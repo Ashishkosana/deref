@@ -1,0 +1,1976 @@
+{
+  "summary": "Design DEREF pattern chapters as ramped level lists (basics->advanced), then synthesize the full acts->chapters->levels curriculum + a data-model manifest the app reads",
+  "agentCount": 16,
+  "logs": [],
+  "result": {
+    "chapterCount": 15,
+    "chapters": [
+      {
+        "key": "arrays-hashing",
+        "title": "Arrays & Hashing: The Mailbox Wall",
+        "act": "I - Linear",
+        "prereqs": [
+          "foundations"
+        ],
+        "levelCount": 11,
+        "boss": "foundations (sorting): Longest Consecutive Sequence's naive answer is the sort-then-scan reflex from Foundations (O(n log n)) — the boss fuses in the hash set to recognize and beat it at O(n)."
+      },
+      {
+        "key": "two-pointers",
+        "title": "Two Pointers: The Rendezvous",
+        "act": "I - Linear",
+        "prereqs": [
+          "foundations",
+          "arrays-hashing"
+        ],
+        "levelCount": 8,
+        "boss": "sorting (from the Foundations act) — 3Sum only becomes a two-pointer problem once you SORT to manufacture the monotonic order the converging pointers depend on, then wrap the Rendezvous walk inside an anchor loop with de-duplication."
+      },
+      {
+        "key": "sliding-window",
+        "title": "Sliding Window: The Moving Frame",
+        "act": "I - Linear",
+        "prereqs": [
+          "foundations",
+          "arrays-hashing",
+          "two-pointers"
+        ],
+        "levelCount": 7,
+        "boss": "arrays-hashing (need/have frequency maps drive the shrink-to-minimize logic)"
+      },
+      {
+        "key": "stack",
+        "title": "The Stack: Spring-Loaded Piles & Monotonic Walls",
+        "act": "I - Linear",
+        "prereqs": [
+          "foundations",
+          "arrays-hashing",
+          "two-pointers"
+        ],
+        "levelCount": 11,
+        "boss": "two-pointers"
+      },
+      {
+        "key": "binary-search",
+        "title": "Binary Search: Halving the Search Space",
+        "act": "I - Linear",
+        "prereqs": [
+          "foundations",
+          "arrays-hashing",
+          "two-pointers"
+        ],
+        "levelCount": 10,
+        "boss": "two-pointers"
+      },
+      {
+        "key": "linked-list",
+        "title": "Linked Lists: The Cable Yard",
+        "act": "II - Linked & Recursive",
+        "prereqs": [
+          "foundations",
+          "two-pointers",
+          "arrays-hashing"
+        ],
+        "levelCount": 12,
+        "boss": "arrays-hashing"
+      },
+      {
+        "key": "recursion",
+        "title": "Recursion & the Call Stack",
+        "act": "II - Linked & Recursive",
+        "prereqs": [
+          "foundations",
+          "stack",
+          "linked-list",
+          "two-pointers"
+        ],
+        "levelCount": 10,
+        "boss": "two-pointers"
+      },
+      {
+        "key": "trees",
+        "title": "Trees & BSTs — The Recursive Grove",
+        "act": "II - Linked & Recursive",
+        "prereqs": [
+          "foundations",
+          "recursion",
+          "linked-list"
+        ],
+        "levelCount": 14,
+        "boss": "arrays-hashing"
+      },
+      {
+        "key": "heaps",
+        "title": "Heaps & Priority Queues: The Loosely-Sorted Pile",
+        "act": "II - Linked & Recursive",
+        "prereqs": [
+          "foundations",
+          "arrays-hashing",
+          "trees"
+        ],
+        "levelCount": 8,
+        "boss": "arrays-hashing"
+      },
+      {
+        "key": "tries",
+        "title": "Tries — The Letter Warehouse",
+        "act": "II - Linked & Recursive",
+        "prereqs": [
+          "foundations",
+          "arrays-hashing",
+          "trees",
+          "recursion",
+          "backtracking"
+        ],
+        "levelCount": 8,
+        "boss": "backtracking"
+      },
+      {
+        "key": "backtracking",
+        "title": "Backtracking: Choose, Explore, Un-choose",
+        "act": "III - Search & Optimize",
+        "prereqs": [
+          "foundations",
+          "recursion",
+          "trees",
+          "arrays-hashing"
+        ],
+        "levelCount": 11,
+        "boss": "arrays-hashing"
+      },
+      {
+        "key": "graphs",
+        "title": "Graphs — BFS & DFS: Floods, Dives, and Frontiers",
+        "act": "III - Search & Optimize",
+        "prereqs": [
+          "foundations",
+          "arrays-hashing",
+          "recursion",
+          "trees",
+          "stack"
+        ],
+        "levelCount": 14,
+        "boss": "arrays-hashing"
+      },
+      {
+        "key": "dynamic-programming",
+        "title": "Dynamic Programming — The Memo Tape",
+        "act": "III - Search & Optimize",
+        "prereqs": [
+          "foundations",
+          "recursion",
+          "arrays-hashing",
+          "binary-search"
+        ],
+        "levelCount": 10,
+        "boss": "binary-search"
+      },
+      {
+        "key": "intervals",
+        "title": "Intervals: Sort, Sweep, and the Frontier",
+        "act": "III - Search & Optimize",
+        "prereqs": [
+          "foundations",
+          "arrays-hashing",
+          "greedy",
+          "heaps"
+        ],
+        "levelCount": 8,
+        "boss": "heaps"
+      },
+      {
+        "key": "greedy",
+        "title": "Greedy: Commit and Never Look Back",
+        "act": "III - Search & Optimize",
+        "prereqs": [
+          "foundations",
+          "arrays-hashing",
+          "heaps"
+        ],
+        "levelCount": 8,
+        "boss": "heaps"
+      }
+    ],
+    "fullChapters": [
+      {
+        "chapterKey": "arrays-hashing",
+        "title": "Arrays & Hashing: The Mailbox Wall",
+        "act": "I - Linear",
+        "oneLineGoal": "Learn to trade a little memory for huge speed by remembering what you've seen in a hash set/map, turning O(n^2) tape-walks into single-pass O(n) lookups.",
+        "prereqChapters": [
+          "foundations"
+        ],
+        "mechanismInOneSentence": "A hash map is a wall of instantly-addressable mailboxes: by remembering what you've already seen (or its count, or its index) you replace a robot's slow walk back over the whole crate-tape with a single teleport lookup, trading memory for speed.",
+        "bossCombinesWith": "foundations (sorting): Longest Consecutive Sequence's naive answer is the sort-then-scan reflex from Foundations (O(n log n)) — the boss fuses in the hash set to recognize and beat it at O(n).",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Mailbox Wall",
+            "kind": "primer",
+            "problem": "No-fail sandbox: a tape of numbered crates sits beside an empty wall of labeled mailboxes. Poke a crate to send the robot to check 'have I seen this value?' the slow way — it walks back over every crate while the op-meter climbs. Then drop the value's token into its labeled mailbox and re-check: the robot now teleports straight to that mailbox in one step. Toggle both ways and watch the op-meter and the growing wall.",
+            "teaches": "The core trade behind the whole family: a hash set/map gives O(1) 'have I seen it / what's its count / where is it' lookups versus an O(n) linear scan of the tape. Introduces keys, membership, and the space-for-time idea from zero.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Contains Duplicate",
+            "kind": "tutorial",
+            "problem": "Contains Duplicate: given the crate-tape of numbers, return True if any value appears at least twice. Watch the tracer run the solution — the robot walks the tape once dropping each value into its mailbox; the instant it reaches a mailbox that already holds a token, it flags the duplicate and stops. Scrub back and forth to see exactly when the set 'catches' the repeat.",
+            "teaches": "The 'seen set' pattern: one pass, check-then-add membership in a hash set. Contrast the O(n) time / O(n) space solution against the O(n^2) compare-every-pair walk the meter would rack up.",
+            "difficulty": 1
+          },
+          {
+            "order": 3,
+            "name": "Valid Anagram",
+            "kind": "guided",
+            "problem": "Valid Anagram: decide if string t is a rearrangement of string s. The scaffold builds a count-mailbox per character, walks s adding counts, then walks t. One line is missing — fill in the line that decrements each character's count for t (and detects a missing/negative key) so that any leftover non-zero count exposes a mismatch.",
+            "teaches": "Frequency counting with a hash map (dict / Counter): keys are characters, values are tallies, and equal multisets mean all counts return to zero. Moves beyond membership to using map values.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "Two Sum",
+            "kind": "guided",
+            "problem": "Two Sum: given the tape and a target, return the indices of the two crates that sum to target. The scaffold walks the tape storing each value->index in the mailbox wall. One line is missing: fill in the check that asks 'is (target - current) already in a mailbox?' and, if so, returns the stored index alongside the current one.",
+            "teaches": "The complement trick — the single most important hashing move: store value->index as you scan and look up the needed partner in O(1), collapsing the O(n^2) nested-loop search into one pass. This is the chapter's 'aha'.",
+            "difficulty": 2
+          },
+          {
+            "order": 5,
+            "name": "Two Sum, No Scaffold",
+            "kind": "open",
+            "problem": "Rewrite Two Sum from a blank editor: one pass over the tape, a value->index mailbox wall, return the two indices. Nothing is pre-filled — the tracer animates whatever you type and the op-meter shows your pass count so you can confirm it stays single-pass.",
+            "teaches": "Consolidate the complement pattern by producing it cold; internalize the 'build the map while you scan, look up as you go' loop shape you will reuse across the entire family.",
+            "difficulty": 2
+          },
+          {
+            "order": 6,
+            "name": "Group Anagrams",
+            "kind": "open",
+            "problem": "Group Anagrams: cluster a list of strings so all mutual anagrams share a group. Write it cold: for each word compute a canonical key (a 26-length character-count tuple, or the sorted letters) and use the mailbox wall to map that key to a bucket-list you append the word into; return the buckets.",
+            "teaches": "Using a computed key as the mailbox label and mapping key -> list of items (a group-by / bucket). Extends frequency counting into a canonical-form signature and runs in O(n*k) instead of comparing every pair.",
+            "difficulty": 3
+          },
+          {
+            "order": 7,
+            "name": "Encode and Decode Strings",
+            "kind": "open",
+            "problem": "Encode and Decode Strings: implement encode(list[str]) -> str and decode(str) -> list[str] that survive any characters, including delimiters. Write both: prefix each string with its length and a separator (e.g. '5#hello'); on decode the robot reads the number, hops exactly that many crates forward, and slices out each string.",
+            "teaches": "Length-prefix serialization and disciplined index arithmetic — walking a pointer forward by a computed offset on the tape. Reinforces Foundations indexing and shows that not every array problem needs a hash map.",
+            "difficulty": 3
+          },
+          {
+            "order": 8,
+            "name": "Valid Sudoku",
+            "kind": "open",
+            "problem": "Valid Sudoku: given a 9x9 board, decide whether the filled cells break any Sudoku rule. Write it: keep one hash set per row, per column, and per 3x3 box (box key = (row//3, col//3)); scan every cell once and flag if a digit is already present in its row-, column-, or box-set.",
+            "teaches": "Running several hash sets in parallel and deriving a bucket key from grid coordinates via (row//3, col//3). One O(cells) pass replaces re-scanning each unit, generalizing the 'seen set' onto a 2-D tape.",
+            "difficulty": 4
+          },
+          {
+            "order": 9,
+            "name": "Product of Array Except Self",
+            "kind": "optimize",
+            "problem": "Product of Array Except Self: return an array where answer[i] is the product of every crate except i — with no division allowed, and the brute-force O(n^2) 'multiply all others for each i' trips the brown-out. Beat it: one left-to-right pass filling prefix products, one right-to-left pass multiplying in suffix products, using only the output tape as scratch.",
+            "teaches": "Prefix/suffix accumulation across the tape in two O(n) passes with O(1) extra space — a pure array technique (no hashing) showing how staged directional passes replace nested loops.",
+            "difficulty": 4
+          },
+          {
+            "order": 10,
+            "name": "Top K Frequent Elements",
+            "kind": "optimize",
+            "problem": "Top K Frequent Elements: return the k most frequent values on the tape. A sort-by-frequency solution is O(n log n) and drags the power meter toward brown-out. Hit the O(n) target: build a frequency map, then a bucket array indexed BY frequency (index = count), and read buckets from the highest count downward until you have k values.",
+            "teaches": "Combining a frequency hash map with bucket sort — using the count itself as an array index — to reach O(n) time and dodge the comparison-sort log factor. Sets up the sort-vs-hash judgment the boss demands.",
+            "difficulty": 4
+          },
+          {
+            "order": 11,
+            "name": "Longest Consecutive Sequence",
+            "kind": "boss",
+            "problem": "BOSS — Longest Consecutive Sequence: find the length of the longest run of consecutive integers on the tape in O(n). The Foundations reflex is to sort then scan (O(n log n)) — that trips the brown-out. Fuse it with hashing: dump every value into a set, and start counting a run ONLY from a value whose predecessor (n-1) is absent, walking n+1, n+2, ... upward. Every value is visited at most twice.",
+            "teaches": "Boss synthesis: recognizing when a hash set beats the sorting reflex, plus the 'only expand from a sequence start' insight that keeps total work O(n) despite the inner while-loop. Combines Foundations sorting intuition with everything learned about sets.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "two-pointers",
+        "title": "Two Pointers: The Rendezvous",
+        "act": "I - Linear",
+        "oneLineGoal": "Master the converging two-pointer walk on ordered data — collapse O(n^2) pair searches into a single O(n), O(1)-space pass, and know exactly when sortedness makes that legal.",
+        "prereqChapters": [
+          "foundations",
+          "arrays-hashing"
+        ],
+        "mechanismInOneSentence": "When a sequence is ordered, two pointer-robots starting at opposite ends can use a single end-to-end comparison to prove that a whole block of candidate pairs is hopeless and discard it, converging on the answer in one linear pass instead of checking every pair.",
+        "bossCombinesWith": "sorting (from the Foundations act) — 3Sum only becomes a two-pointer problem once you SORT to manufacture the monotonic order the converging pointers depend on, then wrap the Rendezvous walk inside an anchor loop with de-duplication.",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Mirror Walk",
+            "kind": "primer",
+            "problem": "No-fail sandbox on the mechanic behind Valid Palindrome (LC 125): two pointer-robots stand on the ends of a numbered crate tape. Poke them to step inward one crate at a time and watch them compare the two mirrored crates each step, until they meet in the middle. Nothing to write, nothing to fail.",
+            "teaches": "The converging-two-pointers substrate from zero: L begins at the left, R at the right, the `while L < R` meeting invariant, that one comparison inspects an end-pair, and how to read the op meter and drag the scrubber.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "The Rendezvous",
+            "kind": "tutorial",
+            "problem": "Two Sum II — Input Array Is Sorted (LC 167). Watch the baked reference solution walk the sorted tape: it sums the two ends, pulls R inward when the sum overshoots `target` and pushes L outward when it falls short. Then replay the O(n^2) brute-force twin and watch the power meter brown out red halfway across, and the hash-map twin pass on time but light the space gauge.",
+            "teaches": "Why sortedness lets a single end-comparison throw away a whole row/column of the pair matrix, collapsing O(n^2) to O(n); and how to read the brown-out power meter (time) versus the space gauge (memory) to feel the two costs the two-pointer answer avoids.",
+            "difficulty": 2
+          },
+          {
+            "order": 3,
+            "name": "Which Way to Step?",
+            "kind": "guided",
+            "problem": "Two Sum II again, with the whole loop written for you but exactly ONE line blanked — the decision that moves a pointer (`if s > target: R -= 1  else: L += 1`). Fill the single missing line so the robots converge onto the pair.",
+            "teaches": "Converting the watched mechanic into code: the monotonic decision rule that chooses which pointer moves, and the proof-by-elimination that moving the OTHER pointer could never reach the target from here.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "Palindrome Checkpoint",
+            "kind": "open",
+            "problem": "Valid Palindrome (LC 125), written cold in a blank editor: converge two pointers from both ends, skip crates that aren't alphanumeric, compare the lowercased characters, and return False on the first mismatch.",
+            "teaches": "Cold-writing a converging loop with an equality test and an early exit; and how to advance a single pointer mid-loop (an in-place skip) without ever violating the `L < R` invariant.",
+            "difficulty": 3
+          },
+          {
+            "order": 5,
+            "name": "Rendezvous, From Memory",
+            "kind": "open",
+            "problem": "Two Sum II (LC 167) with no scaffold at all — the chapter's transfer test. Cold-write the converging two-pointer solution and state its cost: O(n) time, O(1) space. The grader's correctness + complexity gates must both go green with zero aux space on the gauge.",
+            "teaches": "Full independent recall of the target-sum two-pointer pattern and naming its complexity — the go/no-go check that the mechanic actually transferred, not just that you can follow a walkthrough.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "Widest Cistern",
+            "kind": "optimize",
+            "problem": "Container With Most Water (LC 11). The obvious check-every-pair solution browns out at O(n^2); reach the O(n) target by converging from both ends and always advancing the pointer standing at the SHORTER wall.",
+            "teaches": "The greedy converging invariant: because area is bounded by the shorter wall, moving the taller-wall pointer can never increase it — so the shorter-wall pointer is the only move that can improve, a rule you discover by watching the brute version run out of power.",
+            "difficulty": 4
+          },
+          {
+            "order": 7,
+            "name": "After the Storm",
+            "kind": "optimize",
+            "problem": "Trapping Rain Water (LC 42). A correct precompute-left-max / right-max solution passes correctness and time but lights the space gauge at O(n); hit O(1) space by converging two pointers that each carry a running max and always advance whichever side has the smaller running max.",
+            "teaches": "Optimizing SPACE, not just time: trading two prefix/suffix arrays for two running-max scalars, and the invariant that the smaller running max alone bounds the water trapped above the current pointer.",
+            "difficulty": 5
+          },
+          {
+            "order": 8,
+            "name": "The Zero Sum",
+            "kind": "boss",
+            "problem": "3Sum (LC 15): return every unique triplet that sums to zero. SORT the tape first, fix one anchor crate in an outer loop, then run the Rendezvous two-pointer walk across the remaining crates — skipping duplicate values at the anchor and at both pointers so no triplet repeats.",
+            "teaches": "Composing two-pointers with sorting: sort to create the monotonic order the pointers require, reduce each anchor to an inner Two-Sum-II Rendezvous, and de-duplicate on all three indices — O(n^2) time with O(1) extra space, fusing this chapter with sorting from Foundations.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "sliding-window",
+        "title": "Sliding Window: The Moving Frame",
+        "act": "I - Linear",
+        "oneLineGoal": "Sweep a single-pass moving window over a linear structure — fixed-size or constraint-driven — to answer \"best / longest / smallest contiguous run\" questions in O(n).",
+        "prereqChapters": [
+          "foundations",
+          "arrays-hashing",
+          "two-pointers"
+        ],
+        "mechanismInOneSentence": "Instead of re-scanning every subarray, keep a moving window over the tape and update a running summary as one edge enters and the other leaves — collapsing O(n·k)/O(n^2) rescans into a single O(n) pass, always expanding the right edge and shrinking the left only when a constraint demands it.",
+        "bossCombinesWith": "arrays-hashing (need/have frequency maps drive the shrink-to-minimize logic)",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Window Frame",
+            "kind": "primer",
+            "problem": "Maximum Sum Subarray of Size K (classic fixed-window warmup). No-fail poke-and-watch. A tape of numbered crates and a fixed k=3 window frame (two robot arms clamped k crates apart). First run the NAIVE mode: for every start index, re-add all k crates — watch the op-meter rack up ~n·k additions and the brown-out power meter sag. Then flip the SLIDE switch: as the frame steps right, one crate leaves the left arm (subtract it) and one enters the right (add it), so the running sum updates in 2 ops per step. Scrub back and forth to compare the two op-counts.",
+            "teaches": "A window is a contiguous range on the tape, and sliding it right REUSES the previous sum instead of recomputing it — add the entering crate, subtract the leaving crate. This one move turns an O(n·k) rescan into a single O(n) pass; it is the whole chapter in miniature.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Buy Low, Sell Right",
+            "kind": "tutorial",
+            "problem": "Best Time to Buy and Sell Stock (NeetCode, Easy). Watch it run. Tape of daily prices with a 'buy' robot (left edge) and a 'sell' robot (right edge). The animation advances the right robot one day at a time, tracking best profit = price[right] - price[left]; whenever a new lowest price appears under the right robot, the left 'buy' robot teleports forward to it. Step through with the scrubber and confirm the left robot NEVER moves backward.",
+            "teaches": "The first VARIABLE window: the left edge is not fixed — it advances to a better starting point (the running minimum). One forward pass, carry a running best, left never backtracks. Establishes the 'left only moves forward' invariant that powers every variable window in the rest of the chapter.",
+            "difficulty": 2
+          },
+          {
+            "order": 3,
+            "name": "No Repeats Allowed",
+            "kind": "guided",
+            "problem": "Longest Substring Without Repeating Characters (NeetCode, Medium). Fill the ONE missing line. Tape of characters; the window is the current substring of all-unique chars, tracked by a hash set drawn as a rack of lit tiles. The right robot advances and adds each char to the set; the answer is the longest window length seen. The blank you complete is the shrink step: while the incoming char is already in the set, remove the left char and advance the left robot. The op-meter proves each char enters and leaves the set at most once.",
+            "teaches": "Variable window driven by a VALIDITY constraint (all-unique). Expand right every step; when the invariant breaks, shrink from the left until it holds again. A hash set gives O(1) membership so the full scan stays O(n) — this is arrays-hashing's set applied to a moving range.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "Paint the Longest Streak",
+            "kind": "open",
+            "problem": "Longest Repeating Character Replacement (NeetCode, Medium). Write it cold. Tape of letters; you may repaint up to k crates to any letter. Find the longest window you can make all-identical using at most k repaints. Maintain a frequency map of the letters currently in the window plus maxFreq (count of the most-common letter). The window is valid while (windowLength - maxFreq) <= k — the crates you would need to repaint fit within budget; when it isn't, advance the left robot. Track the longest valid window. Brown-out is generous here: correctness first.",
+            "teaches": "A window governed by a COUNTING invariant rather than a set: valid when 'slots to fix' <= budget. Introduces a per-window aggregate (max frequency) as the shrink trigger, and reinforces expand-right / conditional-shrink-left on a numeric constraint.",
+            "difficulty": 3
+          },
+          {
+            "order": 5,
+            "name": "Two Baskets",
+            "kind": "open",
+            "problem": "Fruit Into Baskets (canonical 'longest substring with at most K distinct' template, K=2; a common NeetCode sliding-window practice problem). Write it cold. A tape of fruit-type crates; you carry two baskets, each holding one type, and must pick from one contiguous run. Find the longest contiguous window containing at most 2 distinct types. Keep a freq map of types in the window; expand the right robot, and while the map holds more than 2 keys, shrink from the left (decrement the leftmost type, evict it when its count hits zero). Track the longest window.",
+            "teaches": "The reusable 'at most K distinct' template: a freq map IS the window's contents, and you shrink while distinct-count exceeds the cap. This is the exact machinery the boss needs, rehearsed against a simpler constraint — consolidating the freq-map-shrink pattern before difficulty spikes.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "The Rolling Match",
+            "kind": "optimize",
+            "problem": "Permutation in String (NeetCode, Medium). Beat the brown-out. Given s1 and s2, decide whether s2 contains any permutation of s1 — a FIXED window of length len(s1) whose letter counts exactly equal s1's. The naive attempt rebuilds a 26-letter count for every window and compares all 26 each step; the power meter browns out on long strings (O(n·26)). Optimize: hold one running count and a single 'matches' integer (how many of the 26 letter-counts currently equal the target). On each slide, update only the two affected letters (entering and leaving) and adjust 'matches' in O(1); answer yes when matches == 26. Hit the O(n) target to clear the brown-out.",
+            "teaches": "Fixed-window frequency MATCHING, and the chapter's core lesson pushed to its limit: never recompute the aggregate — touch only what the entering/leaving crate changed, in O(1) per slide. Fuses the fixed window with arrays-hashing counts and turns O(n·k) into O(n).",
+            "difficulty": 4
+          },
+          {
+            "order": 7,
+            "name": "Smallest Cover",
+            "kind": "boss",
+            "problem": "Minimum Window Substring (NeetCode, Hard). Combine everything. Given strings s and t, find the SMALLEST window in s containing every character of t with multiplicity. Build a 'need' frequency map from t and a 'have' counter of how many required characters the current window satisfies. Expand the right robot, updating have; once the window is valid (have covers all of need), CONTRACT the left robot as far as possible while it stays valid, recording the smallest valid window seen. Each step is two-phase: grow to become valid, then shrink to stay minimal. Brown-out enforces a single O(n) pass — each robot crosses the tape exactly once.",
+            "teaches": "The full variable-window boss: simultaneous expand-to-satisfy and shrink-to-minimize against a multiplicity constraint, powered by need/have frequency maps. Fuses sliding-window control flow with arrays-hashing counting — the hardest linear-scan pattern and the template behind most 'smallest/longest window that satisfies X' interview questions.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "stack",
+        "title": "The Stack: Spring-Loaded Piles & Monotonic Walls",
+        "act": "I - Linear",
+        "oneLineGoal": "Go from \"what is a stack?\" to wielding the monotonic stack that answers next-greater/smaller and largest-rectangle in a single O(n) pass.",
+        "prereqChapters": [
+          "foundations",
+          "arrays-hashing",
+          "two-pointers"
+        ],
+        "mechanismInOneSentence": "A stack lets you touch only the top of a pile — push to defer the most recent thing, pop to resolve it — and that one last-in-first-out rule powers both nested-structure matching (brackets, expressions) and the monotonic stack that finds every element's nearest greater/smaller neighbor in one linear sweep.",
+        "bossCombinesWith": "two-pointers",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Spring Platform",
+            "kind": "primer",
+            "problem": "No problem to solve — a guided, no-fail tour. A single spring-loaded platform holds a vertical pile of numbered crates. Poke PUSH to drop a crate on top, POP to lift the top crate off, PEEK to read the top label without removing it. Try to grab a crate from the middle and the game shows it is physically blocked. The op-meter ticks once per action.",
+            "teaches": "LIFO from zero: you can only ever add to or remove from the TOP, so the last crate pushed is the first popped. push / pop / peek / is-empty and their O(1) cost. The physical intuition that a stack has exactly one open end.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Balanced Brackets",
+            "kind": "tutorial",
+            "problem": "Valid Parentheses (NeetCode: Valid Parentheses). Watch a robot scan \"([{}])\" left to right: on each opener it pushes the matching CLOSER onto the platform, and on each closer it pops the top and checks the match. Scrub the timeline to watch the pile grow then drain; the string is valid iff the platform is empty at the end.",
+            "teaches": "A stack as short-term memory for 'the most recent thing still waiting to be closed.' Why LIFO fits nested structure: the innermost unclosed bracket is always the one on top.",
+            "difficulty": 1
+          },
+          {
+            "order": 3,
+            "name": "Close the Brackets",
+            "kind": "guided",
+            "problem": "Valid Parentheses — you write one line. The scaffold pushes openers and drives the loop; you fill the closing-bracket case: pop the top and compare, returning False on mismatch, plus guard the empty-stack case when a closer arrives with nothing to match. Confirm the final 'stack must be empty' check.",
+            "teaches": "The pop-and-compare condition and the two failure edges beginners miss — a closer arriving on an empty stack, and leftover openers at the end.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "The Twin Platform",
+            "kind": "guided",
+            "problem": "Min Stack (NeetCode: Min Stack). Design a stack that also returns its minimum in O(1). The scaffold provides push/pop/top on the main platform; you fill getMin by maintaining a second parallel 'min platform' that pushes the running minimum beside each value and pops in lockstep.",
+            "teaches": "Augmenting a stack with a parallel bookkeeping stack so an aggregate (the min) stays O(1); the invariant that the two platforms rise and fall together.",
+            "difficulty": 2
+          },
+          {
+            "order": 5,
+            "name": "The Postfix Calculator",
+            "kind": "open",
+            "problem": "Evaluate Reverse Polish Notation (NeetCode: Evaluate Reverse Polish Notation). Write it cold: scan tokens, push numbers as crates, and on an operator pop the top two operands, apply it, and push the result back. The final lone crate is the answer.",
+            "teaches": "A stack as an evaluation engine: operator arity (pop exactly two) and operand ORDER — for '-' and '/' the second crate popped is the left operand.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "The Monotonic Wall",
+            "kind": "primer",
+            "problem": "A no-fail tour of a new discipline for the same platform. Feed in bars of varying heights one at a time; the rule forces you to POP every bar shorter than the incoming one before it lands (a decreasing wall). Poke bars in and watch a tall bar trigger a cascade of pops while the pile always stays sorted top-to-bottom. A counter shows each bar is pushed once and popped at most once.",
+            "teaches": "The monotonic-stack invariant (the pile stays sorted) and the pop-WHILE loop that maintains it; the amortized insight that N pushes + at most N pops = O(N) total even though the code looks nested.",
+            "difficulty": 2
+          },
+          {
+            "order": 7,
+            "name": "How Many Days Until Warmer?",
+            "kind": "tutorial",
+            "problem": "Daily Temperatures (NeetCode: Daily Temperatures). Watch the monotonic solution run: the platform holds the INDICES of days still waiting for a warmer one (a decreasing-temperature wall). Each new warmer day pops all colder waiting days and stamps each answer = today's index minus theirs. Scrub to watch waits resolve in bursts.",
+            "teaches": "Storing indices (not values) so you can compute distances; the 'next greater element' pattern where each pop is the exact moment a waiting item finds its answer.",
+            "difficulty": 3
+          },
+          {
+            "order": 8,
+            "name": "Resolve the Wait",
+            "kind": "guided",
+            "problem": "Daily Temperatures — fill the core lines: the while-loop that, for the current day, pops every now-resolved colder index and records its answer, then pushes the current index. The outer loop and result array are provided.",
+            "teaches": "Translating the monotonic invariant into code: the while-pop-and-record step, and knowing to push the current index after resolving.",
+            "difficulty": 3
+          },
+          {
+            "order": 9,
+            "name": "Next Greater, Cold",
+            "kind": "open",
+            "problem": "Daily Temperatures again, written cold with no scaffold — framed as the reusable 'next greater element' template (the NeetCode-150 next-greater problem). You decide what the stack holds, the pop condition, and how to leave still-unresolved days as 0.",
+            "teaches": "Reproducing the next-greater-element template from scratch and recognizing it as a reusable stamp for a whole class of 'nearest bigger/smaller neighbor' problems.",
+            "difficulty": 4
+          },
+          {
+            "order": 10,
+            "name": "Beat the Brown-Out: Car Fleet",
+            "kind": "optimize",
+            "problem": "Car Fleet (NeetCode: Car Fleet). The tempting move — simulate every car's position over time — browns out the power meter on large inputs. Beat the meter: sort cars by start position (descending toward the target), convert each to arrival TIME, then make one monotonic pass — a car that would arrive no later than the fleet ahead is absorbed, otherwise it starts a new fleet. Count fleets while staying under the op budget.",
+            "teaches": "Knowing when to STOP simulating and instead pre-sort + single-pass; fusing sorting (foundations) with a monotonic stack, where each surviving stack entry is one fleet; hitting O(n log n) to clear the brown-out.",
+            "difficulty": 4
+          },
+          {
+            "order": 11,
+            "name": "The Skyline Vault",
+            "kind": "boss",
+            "problem": "Largest Rectangle in Histogram (NeetCode: Largest Rectangle in Histogram). The obvious expand-each-bar approach is O(n²) and browns out. Combine everything: an increasing monotonic stack of (index, height) finds, for each bar, its previous-smaller and next-smaller boundaries — the two-pointer span idea — and the biggest rectangle is height × (right boundary − left boundary). Handle the end-of-array flush. Clear it in O(n).",
+            "teaches": "The capstone monotonic stack: using the stack to compute, in one pass, the two-sided span (previous-smaller / next-smaller boundaries) that the two-pointers chapter framed by hand — then maximizing width × height. Robust boundary and flush handling.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "binary-search",
+        "title": "Binary Search: Halving the Search Space",
+        "act": "I - Linear",
+        "oneLineGoal": "Find things in O(log n) by repeatedly throwing away the half of the space that cannot contain the answer.",
+        "prereqChapters": [
+          "foundations",
+          "arrays-hashing",
+          "two-pointers"
+        ],
+        "mechanismInOneSentence": "Maintain a shrinking [lo, hi] window over a sorted (or otherwise monotonic) space and, at each step, test the midpoint against a predicate to discard the half that provably cannot hold the answer.",
+        "bossCombinesWith": "two-pointers",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Crate Hunt",
+            "kind": "primer",
+            "problem": "Guided-tour on a sorted tape of numbered crates with a lo-robot, a hi-robot, and a mid marker between them. You poke the mid crate; it flips open to reveal its number and greys out the entire half that can no longer contain your target. No-fail: keep poking until one crate remains. A side-by-side meter counts your ~log2(n) pokes against the n pokes a left-to-right scan would cost.",
+            "teaches": "The core mechanism with zero code: a search window [lo, hi], its midpoint, that each comparison discards half of what is left, and why the tape MUST be sorted for discarding a half to be a valid move.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Search, On Rails",
+            "kind": "tutorial",
+            "problem": "Binary Search (LC 704): watch the finished algorithm run on a sorted array hunting for a target. Scrub the timeline to replay lo, hi, and mid moving on the tape while the active comparison line lights up in the code panel each step.",
+            "teaches": "The canonical `while lo <= hi` loop, the three-way compare (found / go right / go left), and the loop invariant: if the target exists, it is always still inside [lo, hi].",
+            "difficulty": 1
+          },
+          {
+            "order": 3,
+            "name": "Mind the Boundary",
+            "kind": "guided",
+            "problem": "Binary Search (LC 704): the full skeleton is provided but the two pointer-update lines are blank. Fill in `lo = mid + 1` and `hi = mid - 1` correctly. A wrong guess like `lo = mid` triggers a visible infinite-loop / brown-out so the mistake is felt, not just marked wrong.",
+            "teaches": "Why each boundary moves PAST mid rather than to mid — the +1 / -1 that guarantees the window strictly shrinks, preventing off-by-one bugs and non-termination.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "Cold Search",
+            "kind": "open",
+            "problem": "Binary Search (LC 704): write the entire function from an empty editor, returning the index of target or -1. The tracer animates whatever you write, so a bad loop condition or mid formula shows up as robots overshooting the tape.",
+            "teaches": "Internalizing the whole template end to end without scaffolding: initialize lo/hi, the loop condition, computing mid, the compare, shrinking the window, and the return.",
+            "difficulty": 2
+          },
+          {
+            "order": 5,
+            "name": "Flatten the Grid",
+            "kind": "guided",
+            "problem": "Search a 2D Matrix (LC 74): the m×n grid of crates is drawn as a real 2D substrate, but the binary search runs over a virtual index range 0..m*n-1 shown as a ghost tape beneath it. Fill the one line that maps mid to a real cell: `row, col = mid // n, mid % n`.",
+            "teaches": "The search space is an abstract range of positions, not the literal data — you can binary-search any monotonic index range as long as you can translate the midpoint into the structure you are probing.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "The Last One Before",
+            "kind": "guided",
+            "problem": "Time Based Key-Value Store (LC 981): a hashmap maps each key to its chronological (timestamp, value) list, drawn as separate tapes. `get(key, t)` must return the value at the largest timestamp <= t. Fill the branch that, on `arr[mid][0] <= t`, records the candidate and keeps pushing right for a possibly-later match.",
+            "teaches": "Boundary search (predecessor / upper-bound): binary search that converges on the best-candidate-so-far instead of demanding an exact hit, and how it plugs into a hashmap of pre-sorted lists (why arrays-hashing is a prerequisite).",
+            "difficulty": 3
+          },
+          {
+            "order": 7,
+            "name": "Where the Tape Snapped",
+            "kind": "tutorial",
+            "problem": "Find Minimum in Rotated Sorted Array (LC 153): watch a binary search that has NO target. It compares nums[mid] to nums[hi] to decide which side the rotation pivot fell on, and the animation highlights the still-sorted half in green versus the broken half in red as the window collapses onto the minimum.",
+            "teaches": "The midpoint test can be any monotonic predicate ('is mid in the left, higher segment?'), not equality to a target — this is the conceptual bridge from 'search for a value' to 'search for a condition boundary'.",
+            "difficulty": 3
+          },
+          {
+            "order": 8,
+            "name": "Search the Broken Ring",
+            "kind": "open",
+            "problem": "Search in Rotated Sorted Array (LC 33): write it cold. At each step decide which half is the sorted one (compare nums[lo] to nums[mid]), then range-check whether the target lies within that sorted half; discard the other half accordingly.",
+            "teaches": "Composing predicate reasoning with a target search — identify the sorted half, test if the target fits inside its known range, and only then choose which side to keep. Directly builds on the pivot logic from level 7.",
+            "difficulty": 4
+          },
+          {
+            "order": 9,
+            "name": "Beat the Clock, Koko",
+            "kind": "optimize",
+            "problem": "Koko Eating Bananas (LC 875): you are handed a correct but naive solution that tries every eating speed 1..max(piles) and it browns out the power meter at O(n·max). Rewrite it to binary-search the eating speed and hit the O(n·log max) target to keep the power on.",
+            "teaches": "Binary search on the ANSWER space: define a monotonic feasibility predicate (can she finish at speed k within h hours?) and search for the boundary where infeasible flips to feasible, instead of scanning every candidate answer. Fuses the abstract-range idea (L5) with predicate boundary search (L6/L7).",
+            "difficulty": 4
+          },
+          {
+            "order": 10,
+            "name": "Median of Two Tapes",
+            "kind": "boss",
+            "problem": "Median of Two Sorted Arrays (LC 4): the brute force is the two-pointer merge you already mastered (walk both tapes to the middle, O(m+n)); the target is O(log(m+n)). Binary-search the partition point of the shorter tape so that the combined left halves hold exactly half the elements, adjusting the cut until max(left) <= min(right).",
+            "teaches": "Fusing the two-pointer merge intuition with binary search on a partition boundary: instead of walking to the median, search for the cut that balances both arrays and satisfies the crossing invariant maxLeftA <= minRightB and maxLeftB <= minRightA.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "linked-list",
+        "title": "Linked Lists: The Cable Yard",
+        "act": "II - Linked & Recursive",
+        "oneLineGoal": "Master pointer rewiring on linked lists — traverse, reverse, dummy-head building, and fast/slow — from a first hop all the way to designing an O(1) LRU cache.",
+        "prereqChapters": [
+          "foundations",
+          "two-pointers",
+          "arrays-hashing"
+        ],
+        "mechanismInOneSentence": "A linked list is a chain of crates joined by re-pluggable \"next\" cables that you can only walk one hop at a time, so you solve problems by advancing pointer-robots and rewiring cables — leaning on a dummy-head sentinel to erase edge cases and a fast/slow pair to find cycles and midpoints.",
+        "bossCombinesWith": "arrays-hashing",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Cable Yard",
+            "kind": "primer",
+            "problem": "No coding, no fail state. A chain of crates is already wired up. Click a crate to reveal its .val and the .next cable leaving it; drive the head-robot hop-by-hop along cables until it lands on the ground (None) and stops. Try to teleport straight to crate #4 — it refuses, you must walk. Finally, re-plug one cable to splice a fresh crate in front of head (prepend) and watch the whole chain re-address.",
+            "teaches": "The node substrate: a node is (val, next); head points at the first crate, None terminates the chain; access is sequential-only (no random index like an array); prepend/append is just re-plugging a cable.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Walk the Line",
+            "kind": "tutorial",
+            "problem": "Watch a finished solution run and scrub it: `curr = head; total = 0; while curr: total += curr.val; curr = curr.next`. The curr-robot hops cable to cable, the op-meter ticks once per hop, and the loop halts the instant curr steps onto None. Activity: read off the list's length and value-sum from the final frame.",
+            "teaches": "The canonical traversal loop idiom (`curr = curr.next` until None), why one full pass is O(n), and how the while-condition terminates cleanly at the None terminator.",
+            "difficulty": 1
+          },
+          {
+            "order": 3,
+            "name": "Flip It — Watch the Dance",
+            "kind": "tutorial",
+            "problem": "Reverse Linked List (NeetCode). Watch the three-robot dance frame by frame: prev starts on None, curr on head; each step saves nxt = curr.next, re-plugs curr.next = prev, then slides prev and curr forward one crate. Scrub to see the cables flip one at a time until curr hits None and prev is standing on the new head.",
+            "teaches": "In-place reversal via three pointers (prev/curr/nxt); crucially, why you must stash nxt BEFORE rewiring curr.next or you lose the rest of the chain.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "Flip It — Plug the Gap",
+            "kind": "guided",
+            "problem": "Reverse Linked List (NeetCode). The full loop scaffold is given with exactly one line blanked. Fill in the rewire line `curr.next = prev` and confirm the advance order. Get the order wrong and the tracer visibly strands the tail — half the chain vanishes into the void.",
+            "teaches": "The rewire-before-advance ordering, and the single most common linked-list bug: dropping the remainder of the list by advancing before (or instead of) saving the next pointer.",
+            "difficulty": 2
+          },
+          {
+            "order": 5,
+            "name": "Flip It — Solo",
+            "kind": "open",
+            "problem": "Reverse Linked List (NeetCode). Write the whole function cold from an empty body: given head, return the head of the reversed list. Your first fully solo rewire, on the pattern you just watched and completed.",
+            "teaches": "Reproducing the reversal pattern unaided; owning the prev/curr/nxt bookkeeping and the O(n)-time / O(1)-space in-place mutation.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "The Zipper",
+            "kind": "guided",
+            "problem": "Merge Two Sorted Lists (NeetCode). A dummy-head + tail pointer scaffold is provided. Fill the compare-and-append branch: attach whichever of list1/list2 holds the smaller value to tail, advance that list and tail, then splice the leftover tail once one list empties. Watch how the dummy node means the first append needs no special case.",
+            "teaches": "The DUMMY-HEAD sentinel pattern, building an output list by appending to a moving tail, and splicing a remaining suffix in O(1) instead of copying it.",
+            "difficulty": 3
+          },
+          {
+            "order": 7,
+            "name": "Carry the One",
+            "kind": "open",
+            "problem": "Add Two Numbers (NeetCode). Write cold: two numbers are stored as digit lists in reverse order. Walk both lists in lockstep, sum digit + digit + carry at each step, build the result behind a dummy head, and remember the final carry can spawn one extra node.",
+            "teaches": "Reusing the dummy-head build; walking two lists together while handling unequal lengths; propagating a carry — the arithmetic cousin of the merge walk.",
+            "difficulty": 3
+          },
+          {
+            "order": 8,
+            "name": "Tortoise & Hare",
+            "kind": "guided",
+            "problem": "Linked List Cycle (NeetCode). Fill the fast/slow advance and the meeting test: slow hops 1, fast hops 2; if fast or fast.next reaches None there is no loop (return False); if fast == slow the hare has lapped the tortoise (return True). The tracer draws the hare catching the tortoise inside the loop. Note the sidebar: the same 2:1 gait, stopped when fast reaches the end, leaves slow sitting on the MIDDLE node.",
+            "teaches": "Floyd's fast/slow (tortoise & hare) for cycle detection AND midpoint-finding, plus the fast.next None-guard that prevents crashing off the end.",
+            "difficulty": 3
+          },
+          {
+            "order": 9,
+            "name": "Cut the Nth-from-Last",
+            "kind": "open",
+            "problem": "Remove Nth Node From End of List (NeetCode). Write cold in a single pass: open a gap of n by advancing a fast pointer n steps first, then move fast and slow together until fast falls off the end — slow now sits just before the target — and unlink it. Put a dummy head in front so deleting the head node isn't a special case.",
+            "teaches": "The fixed-gap two-pointer trick to reach 'k from the end' in one pass, and using the dummy head to erase the delete-the-head edge case.",
+            "difficulty": 4
+          },
+          {
+            "order": 10,
+            "name": "Fold the List",
+            "kind": "open",
+            "problem": "Reorder List (NeetCode). Write cold by composing three skills you already own: use fast/slow to find the middle, reverse the second half, then interleave the two halves node by node (1st, last, 2nd, 2nd-last, ...). Must be in place, O(1) extra space.",
+            "teaches": "Decomposing a hard problem into practiced sub-routines (find-middle + reverse + zipper-merge); managing several live pointers at once without copying nodes.",
+            "difficulty": 4
+          },
+          {
+            "order": 11,
+            "name": "The K-Way Weld",
+            "kind": "optimize",
+            "problem": "Merge K Sorted Lists (NeetCode). Beat the brown-out. The obvious approach — merge list 2 into 1, then 3 into that, then 4... — re-walks the ever-growing accumulator and trips the op-meter at O(k*n). Refactor to pairwise rounds: merge lists in disjoint pairs, halving the count each round, to land at O(n log k) and clear the power meter.",
+            "teaches": "Divide-and-conquer / pairwise reduction, why sequential accumulation degrades to quadratic, and reusing your Merge-Two-Sorted-Lists as the inner subroutine.",
+            "difficulty": 4
+          },
+          {
+            "order": 12,
+            "name": "BOSS: The Cache Vault",
+            "kind": "boss",
+            "problem": "LRU Cache (NeetCode). Design a fixed-capacity cache with O(1) get and put. Fuse this chapter's list mechanism with the hash map from Arrays & Hashing: a hashmap maps key -> node for O(1) lookup, and a DOUBLY-linked list with dummy head+tail sentinels holds usage order so the least-recently-used node is always at the tail and evicting it is O(1). On get/put, unlink the touched node and re-insert it at the head.",
+            "teaches": "The doubly-linked list with sentinel nodes (O(1) unlink + insert-at-head), and marrying a linked list to a hashmap to hit O(1) on both operations — the canonical data-structure-combination interview problem.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "recursion",
+        "title": "Recursion & the Call Stack",
+        "act": "II - Linked & Recursive",
+        "oneLineGoal": "Read, write, and reason about recursive solutions by seeing the call stack as a physical tower of frames — base case, the recursive leap of faith, and return values unwinding back up.",
+        "prereqChapters": [
+          "foundations",
+          "stack",
+          "linked-list",
+          "two-pointers"
+        ],
+        "mechanismInOneSentence": "A function that calls itself builds a tower of stack frames — each frame solves a smaller subproblem, the descent stops at a base case, then the tower unwinds and carries return values back up.",
+        "bossCombinesWith": "two-pointers",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Tower of Frames",
+            "kind": "primer",
+            "problem": "Poke to call factorial(4). Each call drops a new frame onto the call-stack tower (a crate holding that call's n); at n<=1 the base case lights up; then frames pop one by one, each multiplying the value handed up from the frame below. No code to write — scrub back and forth and watch the tower grow, stop, and unwind.",
+            "teaches": "What a stack frame is, that a function can call itself, the base case that halts the descent, and LIFO unwinding — the call stack IS the Stack substrate you already know, now built by the language itself.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Down, Then Back Up",
+            "kind": "tutorial",
+            "problem": "Watch recursive sum_to(n) that adds 1..n. Frames stack downward doing no arithmetic; the base case returns 0; then each frame adds its own number to the running total bubbling up. Toggle a variant that places the work BEFORE vs AFTER the recursive call and watch the print order flip.",
+            "teaches": "The 'leap of faith' — trust the recursive call to solve the smaller case — and WHERE work happens: on the way down (before the call) vs on the way up (after the call, using the returned value).",
+            "difficulty": 2
+          },
+          {
+            "order": 3,
+            "name": "The Branching Stack",
+            "kind": "tutorial",
+            "problem": "Watch naive fib(6): each frame spawns TWO child calls, so the stack becomes a call TREE, not a straight line. The tracer highlights how fib(3), fib(2)... get recomputed over and over; the op/step meter spikes and the power meter starts dipping toward brown-out.",
+            "teaches": "A recursive case can make multiple calls (branching recursion / call tree), and overlapping subproblems make naive recursion explode to O(2^n) — the exact problem you'll repair in the Optimize level.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "Mind the Base Case",
+            "kind": "guided",
+            "problem": "A recursive reverse-a-string function is missing its base case. Run it first and watch the tower climb without end until the power browns out (RecursionError / stack overflow). Then fill the one missing line — the base case (len(s) <= 1 -> return s) that stops the descent.",
+            "teaches": "Every recursion needs a base case that both shrinks toward AND actually reaches a stopping condition; omit it and the tower overflows and collapses.",
+            "difficulty": 2
+          },
+          {
+            "order": 5,
+            "name": "Recurse Down the Chain",
+            "kind": "guided",
+            "problem": "Recursive length of a linked list. The base case (empty node -> 0) is given; fill the single recursive line that returns 1 + length(node.next), and watch a frame get pushed for every node as the robot walks the chain, then a count add up on the unwind.",
+            "teaches": "Applying recursion to the linked-list substrate: each frame owns exactly one node and defers 'the rest of the list' to the recursive call — linear recursion over a pointer chain.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "Merge Two Chains",
+            "kind": "open",
+            "problem": "NeetCode 'Merge Two Sorted Lists' — write it recursively, cold. Base case: if either list is empty, return the other. Otherwise pick the smaller head, set its .next to the recursively-merged rest, and return it.",
+            "teaches": "Designing a recursive solution from scratch: choose the base case(s), do one tiny piece of work (pick the smaller head), and splice in the result of a recursive call on the remainder.",
+            "difficulty": 3
+          },
+          {
+            "order": 7,
+            "name": "Reverse the Chain, Bottom-Up",
+            "kind": "open",
+            "problem": "NeetCode 'Reverse Linked List' — write the recursive version cold. Recurse all the way to the tail (the new head), then on the way UP rewire each node: node.next.next = node; node.next = None.",
+            "teaches": "Doing the real work on the way UP (post-order) and threading pointers as frames unwind — the trickier half of recursion, where a returned result and pointer side-effects combine in one pass.",
+            "difficulty": 4
+          },
+          {
+            "order": 8,
+            "name": "Halve and Conquer",
+            "kind": "open",
+            "problem": "NeetCode 'Pow(x, n)' — compute x^n cold in O(log n) by halving: half = pow(x, n // 2); return half * half (times x more if n is odd), with base case n == 0 -> 1 and negative n handled by inverting.",
+            "teaches": "Divide-and-conquer recursion: each call halves the problem so the tower is only ~log(n) frames tall — the depth idea that powers merge sort and binary search.",
+            "difficulty": 4
+          },
+          {
+            "order": 9,
+            "name": "Cache the Tree",
+            "kind": "optimize",
+            "problem": "Return to the naive Fibonacci from 'The Branching Stack' — it browns out around fib(35). Beat the power meter by memoizing: store each fib(k) in a dict the first time it's computed and reuse it, collapsing the branching call tree from O(2^n) into a thin O(n) line.",
+            "teaches": "Killing overlapping subproblems with memoization — prune the exploding call tree down to a single lineage of frames. This is the seed that grows into Dynamic Programming.",
+            "difficulty": 4
+          },
+          {
+            "order": 10,
+            "name": "Merge Sort: Split, Solve, Merge",
+            "kind": "boss",
+            "problem": "NeetCode 'Sort an Array' via merge sort, cold. Recursively split the array in half (divide-and-conquer, the same halving as Pow) down to single elements, then merge each pair of sorted halves back together with a two-pointer merge on the way up.",
+            "teaches": "Fusing the whole chapter: divide-and-conquer recursion (O(log n) depth) plus the two-pointer merge to sort in O(n log n) — a complete recursive algorithm assembled from the chapter's parts and an earlier pattern.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "trees",
+        "title": "Trees & BSTs — The Recursive Grove",
+        "act": "II - Linked & Recursive",
+        "oneLineGoal": "Solve any binary-tree problem with one recursive template (dive → combine → return, or pass constraints down), reach for a queue when you must sweep level by level, and exploit BST ordering to skip half the work.",
+        "prereqChapters": [
+          "foundations",
+          "recursion",
+          "linked-list"
+        ],
+        "mechanismInOneSentence": "A tree is just linked-list nodes with two pointers, and almost every tree problem is one recursive function that trusts itself on the left and right children then combines their answers on the way back up (post-order) or pushes constraints down on the way in (pre-order) — with a queue substrate for level-by-level sweeps.",
+        "bossCombinesWith": "arrays-hashing",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Grove",
+            "kind": "primer",
+            "problem": "Guided tour of a prebuilt binary tree: every node is a numbered crate and .left/.right are two robot arms. Poke nodes to light up their children; drop a walker robot at the root and watch it descend to a leaf. Tap crates to label root, leaves, depth, and height. No code, no fail.",
+            "teaches": "Tree anatomy (root / parent / child / leaf, depth vs height) and the key reframe: a TreeNode is just a linked-list node with two 'next' arms instead of one — not a brand-new substrate.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Deep Dive",
+            "kind": "tutorial",
+            "problem": "Maximum Depth of Binary Tree (LC 104). Watch the tracer run maxDepth(root): the call stack grows as the walker dives to the deepest leaf, None returns 0, and each node returns 1 + max(left, right) as the stack unwinds. Scrub to replay the descent and the combine.",
+            "teaches": "The recursive tree template and the call-stack mental model — base case at None, recurse into both children, combine the two answers on the way back up (post-order).",
+            "difficulty": 1
+          },
+          {
+            "order": 3,
+            "name": "Mirror, Mirror",
+            "kind": "guided",
+            "problem": "Invert Binary Tree (LC 226). Fill the one missing line that swaps node.left and node.right; the surrounding recursion is given and will flip the entire tree once your line is right.",
+            "teaches": "Do-something-at-the-node then recurse into the children; recursion can mutate a structure, not only read it.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "Spot the Difference",
+            "kind": "guided",
+            "problem": "Same Tree (LC 100). Fill the recursive return that ANDs the root-value check with isSame(p.left, q.left) and isSame(p.right, q.right); the None/None and None/node base cases are provided.",
+            "teaches": "Dual/parallel recursion walking two trees in lockstep, and handling the mismatched-shape base cases with None.",
+            "difficulty": 2
+          },
+          {
+            "order": 5,
+            "name": "Grove Within a Grove",
+            "kind": "open",
+            "problem": "Subtree of Another Tree (LC 572). Write it cold: at every node of the big tree, call your Same-Tree helper to test whether the subtree rooted there equals t.",
+            "teaches": "Nesting one recursion (isSameTree) inside a traversal and reusing an already-solved sub-problem — a direct callback to level 4.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "The Long Way Round",
+            "kind": "open",
+            "problem": "Diameter of Binary Tree (LC 543). Write it cold: a height() recursion that returns each node's height upward while updating a nonlocal best = max(best, left_height + right_height) at every node.",
+            "teaches": "The workhorse pattern — return one value up the stack while tracking a separate global answer as the recursion unwinds.",
+            "difficulty": 3
+          },
+          {
+            "order": 7,
+            "name": "Tipping Point",
+            "kind": "open",
+            "problem": "Balanced Binary Tree (LC 110). Write it cold in a single pass: height() returns the true height, or -1 the moment any node's two child heights differ by more than one, short-circuiting the rest of the tree.",
+            "teaches": "Bubbling a failure signal (-1 sentinel) up through post-order to get an O(n) one-pass answer instead of the naive O(n^2) recompute-height-at-every-node.",
+            "difficulty": 3
+          },
+          {
+            "order": 8,
+            "name": "The Loading Dock",
+            "kind": "tutorial",
+            "problem": "Binary Tree Level Order Traversal (LC 102). Watch BFS run: a queue is a conveyor belt of robots. Snapshot len(queue) at the start of each level to learn how many crates belong to that row, drain exactly those, and enqueue their children behind them.",
+            "teaches": "The chapter's second core tool — a queue for breadth-first, level-by-level sweeps — and the len(queue)-snapshot trick that cuts the stream into distinct rows.",
+            "difficulty": 2
+          },
+          {
+            "order": 9,
+            "name": "The View From the Right",
+            "kind": "open",
+            "problem": "Binary Tree Right Side View (LC 199). Write it cold with BFS: for each level, keep only the last node dequeued from that row.",
+            "teaches": "Applying per-level BFS logic (caring about a node's position within its level) — hands-on practice with the queue tool.",
+            "difficulty": 3
+          },
+          {
+            "order": 10,
+            "name": "Kings of the Hill",
+            "kind": "open",
+            "problem": "Count Good Nodes in Binary Tree (LC 1448). Write it cold: a DFS that carries max-so-far DOWN as a parameter and counts every node whose value is >= that running max.",
+            "teaches": "Passing state DOWN into the recursion (pre-order accumulation) — the opposite direction from levels 6–7's return-up — which sets up passing constraints down for BSTs.",
+            "difficulty": 3
+          },
+          {
+            "order": 11,
+            "name": "Fork in the Road",
+            "kind": "guided",
+            "problem": "Lowest Common Ancestor of a BST (LC 235). Fill the branch logic: if both target values are less than the current node go left, if both are greater go right, otherwise this node is the split point and is the LCA.",
+            "teaches": "The BST ordering invariant — because left < node < right, one comparison chooses a single direction and discards half the tree, giving an O(h) walk with no full search.",
+            "difficulty": 3
+          },
+          {
+            "order": 12,
+            "name": "Border Patrol",
+            "kind": "open",
+            "problem": "Validate Binary Search Tree (LC 98). Write it cold: recurse passing a valid (low, high) range down; every node must fit strictly inside it, going left tightens high to the node's value and going right tightens low. (The naive local left < root < right check is the trap this level exposes.)",
+            "teaches": "Carrying constraints DOWN the recursion and why a propagated global range — not a local parent-only check — is what actually enforces the BST property.",
+            "difficulty": 4
+          },
+          {
+            "order": 13,
+            "name": "Just Enough",
+            "kind": "optimize",
+            "problem": "Kth Smallest Element in a BST (LC 230). Beat the brown-out: the naive solve dumps a full in-order traversal into a list and indexes k-1. Hit the op/step budget instead with an in-order walk that stops the instant it has counted k nodes.",
+            "teaches": "In-order traversal of a BST yields values in sorted order, and early-exit turns O(n) into O(h + k) work — enough to keep the power meter out of the red.",
+            "difficulty": 4
+          },
+          {
+            "order": 14,
+            "name": "Rebuild the Grove",
+            "kind": "boss",
+            "problem": "Construct Binary Tree from Preorder and Inorder Traversal (LC 105). Reconstruct the tree: preorder[0] is the root, find it in inorder to split the left and right subtrees, then recurse on the matching preorder/inorder slices. Fuse in a hashmap of value → inorder-index (from arrays-hashing) so each split is O(1), turning the O(n^2) rescan into O(n) and clearing the brown-out.",
+            "teaches": "Rebuilding structure from traversal orders (preorder gives roots, inorder gives the left/right split) while fusing a hash map to eliminate the repeated linear scan — recursion mastery plus an earlier pattern.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "heaps",
+        "title": "Heaps & Priority Queues: The Loosely-Sorted Pile",
+        "act": "II - Linked & Recursive",
+        "oneLineGoal": "Master the binary heap / priority queue so the extreme element is always instantly reachable, and use the size-k and two-heap tricks to solve top-k, streaming, and scheduling problems without ever fully sorting the data.",
+        "prereqChapters": [
+          "foundations",
+          "arrays-hashing",
+          "trees"
+        ],
+        "mechanismInOneSentence": "A heap keeps a pile only loosely sorted — just enough that the smallest (or largest) crate always sits on top — so grabbing the extreme costs O(1) and re-settling the pile after a push or pop costs O(log n) by bubbling a single crate up or down one root-to-leaf path.",
+        "bossCombinesWith": "arrays-hashing",
+        "levels": [
+          {
+            "order": 1,
+            "name": "THE BUBBLE PIT",
+            "kind": "primer",
+            "problem": "No-fail sandbox: crates sit on a backing tape (the array) with a pyramid drawn over it (index 0 at the apex, 1 & 2 below, 3-6 below that). Poke 'add' to drop a crate at the end of the tape and watch it bubble UP past any bigger parent; poke 'take top' to lift the apex crate off, move the last tape crate onto the apex, and watch it sink DOWN past its smaller child; poke 'peek' to see the minimum always waiting at index 0; poke 'heapify' to drop a scrambled tape and watch it settle into a valid pile. Nothing to solve — just poke and watch the meters tick.",
+            "teaches": "A heap is a complete binary tree packed into an array (parent i -> children 2i+1, 2i+2; child i -> parent (i-1)//2); the min-heap invariant (every parent <= its children) is exactly why the smallest crate is always at index 0; sift-up on push and sift-down on pop each touch only ONE root-to-leaf path, so both are O(log n); 'loosely sorted' means siblings are unordered — a heap is not a sorted array.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "STONE SMASHER",
+            "kind": "tutorial",
+            "problem": "Last Stone Weight (NeetCode Easy): repeatedly smash the two heaviest stones; if they differ, the difference goes back into the pile; return the last stone's weight (or 0). Scrub through a prewritten solution frame-by-frame: a max-heap pops the top two crates, pushes back their difference, and repeats until one or zero stones remain.",
+            "teaches": "Python's heapq is a MIN-heap, so you store NEGATED weights to simulate a MAX-heap and negate back on the way out; the extract-max loop (heappop twice, heappush the remainder); reading the op/step meter to see each heappush/heappop cost O(log n) while the whole run is O(n log n).",
+            "difficulty": 2
+          },
+          {
+            "order": 3,
+            "name": "THE HIGH-WATER MARK",
+            "kind": "guided",
+            "problem": "Kth Largest Element in a Stream (NeetCode Easy): the KthLargest class returns the kth largest value seen so far after each add(). The scaffold already heapifies the initial list; fill the ONE missing line in add() that pushes the new value and then evicts the smallest whenever the heap grows past size k, so the kth-largest stays parked at the root.",
+            "teaches": "A size-k MIN-heap keeps the kth largest element sitting at its root (index 0) — everything smaller has already fallen out; heapify(list) builds the starting pile in O(n); heappushpop (or push-then-pop-if-len>k) caps the heap so each add() is O(log k), not O(n).",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "TOP OF THE PILE",
+            "kind": "open",
+            "problem": "Kth Largest Element in an Array (NeetCode Medium): return the kth largest element of an unsorted array. Write it cold with a heap — either sweep the array through a size-k min-heap, or heapify the whole array as a max-heap and pop k-1 times.",
+            "teaches": "The top-k pattern: a size-k heap answers 'kth largest' in O(n log k), beating a full O(n log n) sort when k is small (the brown-out spine rewards it); choosing min-heap-of-size-k versus max-heap-of-all is a deliberate time/space trade-off.",
+            "difficulty": 3
+          },
+          {
+            "order": 5,
+            "name": "NEAREST BEACONS",
+            "kind": "open",
+            "problem": "K Closest Points to Origin (NeetCode Medium): return the k points nearest the origin by Euclidean distance. Write it cold using a heap of (distance, point) crates.",
+            "teaches": "Heaps order by a computed KEY by storing (key, payload) tuples, which compare lexicographically; keeping the k SMALLEST items means a size-k MAX-heap (store negated distances) that evicts the farthest crate as new points arrive; use squared distance to skip the sqrt. Same top-k skeleton as the previous level, now keyed.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "THE COOLDOWN YARD",
+            "kind": "open",
+            "problem": "Task Scheduler (NeetCode Medium): given task labels and a cooldown n between two identical tasks, return the minimum time units to finish everything. Write it cold: count tasks with a hashmap, load the counts into a max-heap, then each tick run the most-frequent AVAILABLE task and park the just-run task in a FIFO cooldown queue until its timer expires.",
+            "teaches": "Combining a max-heap (always grab the most-frequent ready task) with a cooldown QUEUE that re-admits a task once its timer elapses — two structures interlocking; feeding a hashmap of counts (from arrays-hashing) into a heap; simulating time ticks where forced idles are the visible brown-out cost of the greedy choice.",
+            "difficulty": 4
+          },
+          {
+            "order": 7,
+            "name": "THE MEDIAN GATE",
+            "kind": "optimize",
+            "problem": "Find Median from Data Stream (NeetCode Hard): support addNum() and findMedian() over a growing stream. The naive 'store everything and sort on every findMedian' solution trips the brown-out meter at scale; hit the target by holding a MAX-heap for the lower half and a MIN-heap for the upper half, kept balanced so the median is always at (or between) the two roots.",
+            "teaches": "Two balanced heaps split the stream at the median: findMedian becomes O(1) (peek one or both roots) and addNum stays O(log n), versus O(n log n) per query for re-sorting; the whole trick is maintaining the size invariant (|low| - |high| <= 1) by shuffling one crate between the piles after each insert.",
+            "difficulty": 5
+          },
+          {
+            "order": 8,
+            "name": "THE FEED FORGE",
+            "kind": "boss",
+            "problem": "Design Twitter (NeetCode Medium): implement postTweet, follow, unfollow, and getNewsFeed that returns the 10 most recent tweets across a user and everyone they follow. Fuse the heap merge with the hashing from Arrays & Hashing: hashmaps store user->tweets and user->followees, a global counter timestamps tweets, and a heap merges the k time-ordered tweet lists to pull only the newest 10.",
+            "teaches": "Merging k already-ordered tweet lists with a heap (the merge-k-lists technique) instead of sorting every feed; a monotonic global timestamp gives a total order across users; hashmaps (arrays-hashing) hold the follow graph and per-user tweet history — the boss where the size-k / merge heap pattern rides on top of the hashing substrate you already own.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "tries",
+        "title": "Tries — The Letter Warehouse",
+        "act": "II - Linked & Recursive",
+        "oneLineGoal": "Master the prefix tree: build it, walk it, wildcard-search it, and let it supercharge a grid search.",
+        "prereqChapters": [
+          "foundations",
+          "arrays-hashing",
+          "trees",
+          "recursion",
+          "backtracking"
+        ],
+        "mechanismInOneSentence": "A trie stores a whole set of strings as one branching path of single-letter nodes, so every shared prefix is stored once and any insert, lookup, or prefix-check costs only the length of the word — never the size of the dictionary.",
+        "bossCombinesWith": "backtracking",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Letter Warehouse",
+            "kind": "primer",
+            "problem": "Poke-and-watch sandbox built on Implement Trie / Prefix Tree (LC 208): tap to feed the pre-baked words 'cat', 'car', 'card', 'dog' into the warehouse one letter at a time and watch the branching junction-boxes grow; a reader-robot walks from the root down each letter-pipe, and a word-lamp lights on the final letter of each word.",
+            "teaches": "The shape of a trie from zero: each node is one letter, each edge is 'the next letter', words that share a prefix share the same path (the 'ca-' trunk splits into 't' and 'r'), and the end-of-word lamp is the only thing that separates a real word 'car' from a mere prefix of 'card'. No code, no failure — just build intuition for the substrate.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Insert, Watched",
+            "kind": "tutorial",
+            "problem": "Step through the real Python insert() of Implement Trie (LC 208) as it stores 'apple' then 'app', with the active line highlighted and the scrubber live.",
+            "teaches": "The insert loop as motion: the reader-robot starts at the root and for each character either follows an existing child-pipe or builds a new junction, then descends; at the end it lights the word-lamp. The op-meter ticks once per character, making it visible that insert is O(len(word)) — flat no matter how many words already live in the warehouse.",
+            "difficulty": 2
+          },
+          {
+            "order": 3,
+            "name": "Search vs. startsWith",
+            "kind": "guided",
+            "problem": "Fill the one missing line in search() and startsWith() for Implement Trie (LC 208). The walk-the-path scaffold is provided; you supply the 'if char not in node.children: return False' bail-out and the terminal return (return node.is_end for search vs. return True for startsWith).",
+            "teaches": "Lookup is just walking the path and failing the instant a letter-pipe is missing; the ONLY difference between search and startsWith is the final check — search demands the word-lamp be lit, startsWith is happy just to have arrived. Cements why a trie deliberately separates 'is a word' from 'is a prefix'.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "Build the Warehouse Cold",
+            "kind": "open",
+            "problem": "Implement Trie / Prefix Tree (LC 208) from scratch: a TrieNode holding a children dict + an is_end flag, plus insert, search, and startsWith.",
+            "teaches": "Assembling the whole structure unaided: node design (a dict of children keyed by single characters), the shared descend-or-create walk reused across all three methods, and the load-bearing mental model that a trie is simply a tree whose edges are labeled by letters. Target complexity O(len(word)) per operation.",
+            "difficulty": 3
+          },
+          {
+            "order": 5,
+            "name": "Prefix Query Storm",
+            "kind": "optimize",
+            "problem": "Autocomplete workload built on startsWith (LC 208): a dictionary of ~10^4 words must answer a storm of prefix queries. A naive per-query scan of the word list trips the brown-out power meter (O(N·L) per query); load the words into a trie once so each query is answered in O(len(prefix)).",
+            "teaches": "The headline win of a trie made concrete against the power meter: prefix queries cost the length of the query, not the size of the dictionary. Watching the O(N·L) list-scan brown out beside the O(len(prefix)) trie-walk builds real Big-O intuition and shows exactly when to reach for a trie instead of a plain hashset.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "The Wildcard Split",
+            "kind": "tutorial",
+            "problem": "Watch the search of Design Add and Search Words Data Structure (LC 211) run on queries with a '.' wildcard — e.g. searching '.ad' and 'b..' against a trie holding 'bad', 'dad', and 'mad'.",
+            "teaches": "How a wildcard turns a straight walk into a recursive branch: at a normal letter the robot follows one pipe, but at a '.' it clones itself into EVERY child-pipe and each clone searches on. Watch the search fan out and prune dead branches — the bridge from a linear lookup to recursive trie-DFS, reusing the recursion chapter's mental model.",
+            "difficulty": 4
+          },
+          {
+            "order": 7,
+            "name": "Add & Search Words",
+            "kind": "open",
+            "problem": "Design Add and Search Words Data Structure (LC 211) cold: addWord (identical to trie insert) plus a recursive search that, on a '.', tries every child, and on a normal letter follows that one child only, checking the word-lamp when the query is exhausted.",
+            "teaches": "Writing DFS over trie children with a wildcard: carrying a node + index through the recursion, fanning out on '.', early-returning True on the first matching branch, and only checking the end-of-word lamp when the query runs out. Fuses the trie substrate with recursion — the last skill needed before the boss.",
+            "difficulty": 4
+          },
+          {
+            "order": 8,
+            "name": "BOSS: Word Search II",
+            "kind": "boss",
+            "problem": "Word Search II (LC 212): given a grid of letter-crates and a word list, return every word traceable through adjacent cells. The level first shows the brute-force baseline (run a grid backtracking DFS once per word) browning out on many words, then you build the trie-guided solution: load all words into a trie and run a SINGLE backtracking DFS over the grid, using the trie to prune the instant no word continues down the current path.",
+            "teaches": "Combining the trie with grid backtracking from the Backtracking chapter: one shared DFS drives all words at once, the current trie-node rides along with the search finger, visited crates are marked and restored on the way back, and matches are collected wherever a word-lamp lights. Shows how a trie collapses N independent searches into one pass and turns an exponential brute force into a solution that clears the power meter.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "backtracking",
+        "title": "Backtracking: Choose, Explore, Un-choose",
+        "act": "III - Search & Optimize",
+        "oneLineGoal": "Turn any \"find all combinations / arrangements that satisfy a constraint\" problem into a choose-explore-unchoose search over a decision tree, then prune it so it runs fast.",
+        "prereqChapters": [
+          "foundations",
+          "recursion",
+          "trees",
+          "arrays-hashing"
+        ],
+        "mechanismInOneSentence": "Every backtracking problem is a depth-first walk over an implicit tree of choices: at each node you make one choice, recurse to explore everything that follows from it, then un-make it to try the next — pruning any branch that can't reach a valid answer.",
+        "bossCombinesWith": "arrays-hashing",
+        "levels": [
+          {
+            "order": 1,
+            "name": "Choose, Explore, Un-choose",
+            "kind": "primer",
+            "problem": "No code. Given three numbered crates [1,2,3], the learner pokes an INCLUDE or SKIP switch on each crate in turn. A robot walks down a decision tree that draws itself branch by branch; at each leaf it drops the current path into a results bin. The learner can rewind and try the other switches, watching the path-stack substrate grow on the way down and shrink (pop) as the robot walks back up. Goal: light up all 8 leaves.",
+            "teaches": "The core backtracking loop — make a choice, recurse to explore its consequences, then undo it (backtrack) to try the next; the recursion tree's leaves are the complete answers, and the path stack is what grows on descent and shrinks on the way back up.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Subsets, on Autopilot",
+            "kind": "tutorial",
+            "problem": "Subsets (LC 78): watch the standard backtracking solution run on nums=[1,2,3] with the scrubber. The code panel highlights the active line while the recursion tree, the path stack, and the results list animate in sync. Emphasis on the start index i that keeps the robot moving forward along the tape, and the res.append(path[:]) that snapshots a COPY at every node.",
+            "teaches": "The canonical backtracking template (path + start index + collect at each node) and why we append a copy of the path rather than the live, still-mutating list.",
+            "difficulty": 1
+          },
+          {
+            "order": 3,
+            "name": "The Missing Undo",
+            "kind": "guided",
+            "problem": "Subsets (LC 78): the solution is complete except for one blank line at the end of the loop body. Run it once as-is and the animation shows the path stack growing forever and duplicated garbage piling into results. Fill in the single line — path.pop() — and watch the stack correctly shrink each time recursion returns.",
+            "teaches": "The un-choose step is what keeps the shared path in sync as recursion unwinds; skipping the pop corrupts every sibling branch that runs after it.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "Dialing by Branches",
+            "kind": "guided",
+            "problem": "Letter Combinations of a Phone Number (LC 17): digits like \"23\" map to letter groups (2->abc, 3->def). The template is provided; fill in the loop that iterates over mapping[digits[i]] and recurses to the next digit. The tree drawn on screen now branches k-ways instead of two, one level per digit, with fixed depth = len(digits).",
+            "teaches": "Branching factor can be more than two and can come from a lookup map; when depth is fixed and there is no constraint to violate, backtracking is simply a clean Cartesian product over the choice tree.",
+            "difficulty": 2
+          },
+          {
+            "order": 5,
+            "name": "Order Matters Now",
+            "kind": "guided",
+            "problem": "Permutations (LC 46): unlike subsets, every element must appear and order counts, so there is no start index — each level chooses from ALL elements not yet used. A `used` boolean track (a row of robot flags over the crates) is provided; fill in the guard that skips an element when used[i] is True, plus the matching set-true-before / reset-false-after around the recursive call.",
+            "teaches": "When order matters you choose from all remaining elements instead of a forward suffix, using a `used` marker to avoid repeats — the direct contrast to the start-index pattern from subsets.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "Hitting a Target",
+            "kind": "open",
+            "problem": "Combination Sum (LC 39): given distinct candidates and a target, write the solver cold. Numbers may be reused, so the recursive call passes the SAME start index i (not i+1). Two base cases: when the running remainder hits 0, collect a copy; when it goes negative, abandon the branch. The op-meter counts every node the robot visits.",
+            "teaches": "Element reuse (recurse on i, not i+1) and the first real pruning: a base case that abandons a branch the instant the running total overshoots the target.",
+            "difficulty": 3
+          },
+          {
+            "order": 7,
+            "name": "Killing the Duplicates",
+            "kind": "guided",
+            "problem": "Combination Sum II (LC 40): now candidates contain duplicates and each may be used at most once (recurse with i+1). The solution sorts the candidates first; fill in the one guard that skips a candidate equal to its left neighbor at the SAME tree level — `if i > start and candidates[i] == candidates[i-1]: continue`. The tree view flags the duplicate sibling branches that get pruned.",
+            "teaches": "The sort-then-skip-equal-sibling trick for deduping results when the input has repeats: skip a value only when it repeats at the same level, never when it repeats deeper down a branch.",
+            "difficulty": 3
+          },
+          {
+            "order": 8,
+            "name": "Cutting a String",
+            "kind": "open",
+            "problem": "Palindrome Partitioning (LC 131): write it cold. At index start, the choices are every possible cut end; a cut is allowed only if the substring s[start:end] is a palindrome (a provided is_palindrome helper). Recurse from end; collect a copy when start reaches the end of the string. The tape shows the string being sliced, with non-palindrome cuts greyed out before the robot descends.",
+            "teaches": "Choices can be variable-length substrings gated by a validity test; backtracking enumerates every valid partition by descending only into branches that pass the check.",
+            "difficulty": 4
+          },
+          {
+            "order": 9,
+            "name": "Prune or Brown Out",
+            "kind": "optimize",
+            "problem": "Combination Sum (LC 39), stress input: your level-6 solution now trips the brown-out power meter because it keeps wandering into branches whose remainder is already negative for many more candidates. Sort the candidates ascending and add `if candidates[i] > remaining: break` inside the loop so the entire rest of the branch is cut at once. Beat the op-budget shown on the meter.",
+            "teaches": "Pruning is the main performance lever in backtracking: sorting lets you break (kill all larger siblings in one shot) instead of continue, collapsing the explored tree from thousands of nodes to a fraction.",
+            "difficulty": 4
+          },
+          {
+            "order": 10,
+            "name": "Search the Grid",
+            "kind": "open",
+            "problem": "Word Search (LC 79): the substrate becomes a 2D grid of lettered crates. Write the DFS-backtracking cold: from a matching cell, mark it visited (temporarily overwrite with '#'), explore the four neighbors for the next character, and on return un-mark it back to its letter. Out-of-bounds and letter-mismatch checks prune immediately. A robot leaves a glowing trail that lights on the way in and goes dark on backtrack.",
+            "teaches": "Backtracking generalizes from a 1D tape to a 2D grid: the 'choices' are the four neighbors, and the un-choose step is un-marking the visited cell so other paths can reuse it.",
+            "difficulty": 4
+          },
+          {
+            "order": 11,
+            "name": "N-Queens",
+            "kind": "boss",
+            "problem": "N-Queens (LC 51): place n queens on an n x n board so none attack each other. Backtrack row by row; at each row try every column, but use three hash sets — columns, the (row - col) diagonal, and the (row + col) anti-diagonal — for O(1) conflict checks and instant pruning. This fuses the choose-explore-unchoose loop with the set-membership pattern from Arrays & Hashing. Beat the brown-out on n = 8 and above.",
+            "teaches": "Constraint-satisfaction backtracking: combine the decision-tree search with O(1) hash-set membership (columns plus both diagonals) to prune illegal placements immediately — the capstone fusion of backtracking and hashing.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "graphs",
+        "title": "Graphs — BFS & DFS: Floods, Dives, and Frontiers",
+        "act": "III - Search & Optimize",
+        "oneLineGoal": "Traverse graphs and grids with BFS and DFS to count and measure regions, find shortest paths, detect cycles, and order dependencies.",
+        "prereqChapters": [
+          "foundations",
+          "arrays-hashing",
+          "recursion",
+          "trees",
+          "stack"
+        ],
+        "mechanismInOneSentence": "To explore a graph you visit a start node then fan out to its neighbors, stamping each node visited so you never loop — BFS uses a queue to spread in equal-distance rings (shortest paths) while DFS uses recursion or a stack to plunge down one path and backtrack.",
+        "bossCombinesWith": "arrays-hashing",
+        "levels": [
+          {
+            "order": 1,
+            "name": "Signal in the Network",
+            "kind": "primer",
+            "problem": "Guided-tour sandbox, nothing to code and nothing to fail. The screen shows a network of numbered junction-box nodes wired together, and beside it a grid of crates. Poke any node: its wires light up and its direct neighbors glow — that is adjacency. Drag the Wavefront robot onto a node and tap 'ripple' — it floods outward one ring at a time (BFS). Drag the Diver robot on and tap 'dive' — it plunges down one path leaving a paint stamp, hits a dead end, and backtracks (DFS). Toggle the grid view to see that a grid cell is just a node whose neighbors are up/down/left/right.",
+            "teaches": "Graph vocabulary from zero — nodes, edges, neighbors, adjacency; that a grid IS a graph (each cell a node with 4 neighbors); the visited stamp that stops infinite loops; and the core split between BFS (spread in rings via a queue) and DFS (plunge and backtrack via a stack/recursion).",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Two Robots, One Grid",
+            "kind": "tutorial",
+            "problem": "Watch mode on a small Number of Islands grid (1 = land crate, 0 = water). Press play: the Diver DFS sinks one island — it stamps a land cell visited, then recurses into each of its 4 neighbors, turning the whole connected blob dark, and the op-meter ticks once per cell. Replay the same grid with the Wavefront BFS to see the identical blob filled ring-by-ring from a queue. The code panel highlights the active line as the robot moves.",
+            "teaches": "Flood-filling one connected region; marking cells visited so each is touched exactly once; that DFS and BFS discover the SAME set of reachable cells and only the order differs; reading the op-meter and the active-line highlight.",
+            "difficulty": 1
+          },
+          {
+            "order": 3,
+            "name": "Sink the Island",
+            "kind": "guided",
+            "problem": "Number of Islands, full grid. The scaffold is written: the outer double loop, the count increment, and a dfs(r, c) whose base case (out of bounds, or water/already-visited) is given — but the recursive step is blank. Fill the ONE missing line that stamps the current cell and dives into its four neighbors so the island fully sinks before count += 1.",
+            "teaches": "Writing the recursive neighbor expansion for grid DFS; why you stamp a cell BEFORE recursing (so you never re-enter it); that each fresh unvisited land cell is the seed of a new component to count.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "How Big Is It?",
+            "kind": "open",
+            "problem": "Max Area of Island, blank editor. Write a DFS that returns the SIZE of the island containing a cell (1 plus the sum of the four neighbor dives), scan every cell, and report the largest area found. No scaffold.",
+            "teaches": "Writing grid DFS from scratch; a DFS that RETURNS an aggregate value (area) assembled from its child calls rather than just marking cells; tracking a running maximum across separate components.",
+            "difficulty": 3
+          },
+          {
+            "order": 5,
+            "name": "Trapped in the Middle",
+            "kind": "open",
+            "problem": "Surrounded Regions: flip every 'O' region fully enclosed by 'X' to 'X', but leave any 'O' that touches the border alone. Write DFS that starts ONLY from the border O's to paint them 'safe', then sweep the board flipping unpainted O's to X and restoring the safe ones.",
+            "teaches": "Seeding the search from the border instead of the interior; the invert trick (mark what to KEEP, then flip everything else); launching many DFS starts from a set of seed cells rather than one.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "Two Oceans",
+            "kind": "open",
+            "problem": "Pacific Atlantic Water Flow: find every cell from which water can reach BOTH oceans, where water flows only to equal-or-lower neighbors. Reverse the flow — run one traversal inward from the Pacific border cells and another from the Atlantic border cells (climbing to equal-or-higher neighbors), then return the cells reachable in both sets.",
+            "teaches": "Reversing the search direction to avoid a fresh search from every cell; running two independent multi-seed traversals and intersecting their reachable sets; encoding a flow rule as the neighbor-eligibility condition.",
+            "difficulty": 4
+          },
+          {
+            "order": 7,
+            "name": "Wire the Stations",
+            "kind": "guided",
+            "problem": "Number of Connected Components in an Undirected Graph: given n nodes and an edge list. The DFS-count loop is already written; fill the two lines that BUILD the adjacency list from the edge list (add each edge in BOTH directions) so the traversal has neighbors to follow.",
+            "teaches": "Representing a non-grid graph as an adjacency list (dict of node -> neighbor list); why undirected edges are added both ways; that counting connected components is the exact same 'start a DFS from each unvisited node' idea as counting islands, just without the grid.",
+            "difficulty": 3
+          },
+          {
+            "order": 8,
+            "name": "Copy the Whole Network",
+            "kind": "open",
+            "problem": "Clone Graph: given a reference to a node in a connected undirected graph, return a deep copy. Write a DFS (or BFS) that carries a hash map old-node -> new-node: on first visit, create the clone and recurse to wire up its neighbor clones; on a revisit, just return the clone that already exists.",
+            "teaches": "Traversing an adjacency-based graph via node references; using a hash map as BOTH the visited set and the old->new lookup; how that map breaks cycles by returning the existing clone — the arrays-hashing pattern fused with traversal.",
+            "difficulty": 4
+          },
+          {
+            "order": 9,
+            "name": "The Ripple Is the Distance",
+            "kind": "tutorial",
+            "problem": "Watch mode on a Rotting Oranges grid. Every rotten orange is dropped into the BFS queue at minute 0 all at once; press play and watch the rot spread as a single expanding wavefront where each new ring is minute + 1. The step meter shows every cell entering the queue exactly once, and the brown-out power meter stays green because nothing is re-scanned.",
+            "teaches": "BFS layers equal shortest distance in an unweighted graph; MULTI-SOURCE BFS (seed many starts into the queue at once); why BFS, not DFS, measures shortest spread time; visual proof that the visited set keeps the work O(cells). A deliberate difficulty relax to watch a brand-new mechanic before writing it.",
+            "difficulty": 2
+          },
+          {
+            "order": 10,
+            "name": "Rot Spreads Fastest by Wave",
+            "kind": "open",
+            "problem": "Rotting Oranges: write the multi-source BFS cold. Seed all rotten cells into the queue and count the fresh ones; BFS minute by minute, rotting fresh neighbors as the wave reaches them; return the minute the last orange rots, or -1 if any fresh orange is unreachable.",
+            "teaches": "Writing multi-source BFS from scratch; advancing a level counter once per queue-layer (not per cell); using a fresh-count to detect unreachable cells and correctly return -1.",
+            "difficulty": 4
+          },
+          {
+            "order": 11,
+            "name": "Fill Every Room",
+            "kind": "optimize",
+            "problem": "Walls and Gates: fill each empty room with its distance to the nearest gate. The naive attempt — a separate BFS/DFS launched from every empty room — trips the brown-out meter at O((mn)^2). Rewrite it as ONE multi-source BFS seeded from all gates at once and hit the O(mn) target so the power meter stays green.",
+            "teaches": "Recognizing 'distance from the nearest of many sources' as a multi-source BFS; flipping the search around (spread FROM the gates, not from each room) to collapse quadratic work to linear; reading the brown-out/op-meter as a live complexity signal.",
+            "difficulty": 4
+          },
+          {
+            "order": 12,
+            "name": "Can You Finish?",
+            "kind": "open",
+            "problem": "Course Schedule: given numCourses and prerequisite pairs, decide whether every course can be finished. Build a directed adjacency list and detect whether the graph contains a cycle — either DFS with a three-state mark (unvisited / on-current-path / done) or Kahn's BFS that repeatedly peels off zero-indegree nodes.",
+            "teaches": "DIRECTED graphs (edges point one way) and why any cycle makes finishing impossible; the on-path 'gray' marker that distinguishes a back-edge cycle from a node that is merely already finished; the two standard cycle-detection engines — DFS 3-color and BFS indegree.",
+            "difficulty": 4
+          },
+          {
+            "order": 13,
+            "name": "Order of Operations",
+            "kind": "optimize",
+            "problem": "Course Schedule II: return a valid ordering of all courses, or an empty list if impossible. Extend cycle detection to emit a topological order — push nodes as they finish in DFS post-order then reverse, or dequeue them in Kahn's order — while still catching cycles. Hit the O(V + E) target.",
+            "teaches": "Topological sort as the PAYLOAD of the same traversal rather than a new algorithm; DFS post-order-reversed versus Kahn's dequeue order; that a valid ordering exists if and only if there is no cycle, all discovered in one linear pass.",
+            "difficulty": 5
+          },
+          {
+            "order": 14,
+            "name": "The Ladder",
+            "kind": "boss",
+            "problem": "Word Ladder: transform beginWord into endWord one letter at a time, with every intermediate word in the dictionary, returning the shortest transformation length. Fuse this chapter's BFS-shortest-path engine with the arrays-hashing pattern: pre-index the word list into a hash map of wildcard patterns (e.g. 'h*t' -> [hot, hit]) for O(1) neighbor generation plus a hash set of seen words, then BFS from beginWord counting levels until you reach endWord.",
+            "teaches": "Modeling a non-obvious problem AS a graph (words are nodes, single-letter edits are edges); combining BFS-for-shortest-path with hash-based adjacency generation and O(1) membership from arrays-hashing; the full pipeline — build adjacency, seed the queue, ripple out level by level, and stop the instant you reach the target.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "dynamic-programming",
+        "title": "Dynamic Programming — The Memo Tape",
+        "act": "III - Search & Optimize",
+        "oneLineGoal": "Turn slow, self-repeating recursion into fast table-filling by spotting overlapping subproblems and caching each subproblem's answer exactly once.",
+        "prereqChapters": [
+          "foundations",
+          "recursion",
+          "arrays-hashing",
+          "binary-search"
+        ],
+        "mechanismInOneSentence": "Many problems recompute the same subproblem exponentially often; DP stores each subproblem's answer once on a memo tape and builds bigger answers from already-solved smaller ones, turning brown-out exponential recursion into fast linear table-filling.",
+        "bossCombinesWith": "binary-search",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Recompute Trap",
+            "kind": "primer",
+            "problem": "Fibonacci (mechanism primer): poke a naive recursive fib(n) and watch the call-tree robots re-scan the same numbered crates over and over as the brown-out power meter spikes red; then flip the MEMO TAPE lever and watch every repeat call get answered instantly from a cache crate, the tree collapsing and the meter going green.",
+            "teaches": "Overlapping subproblems: naive recursion redoes identical work exponentially, while a memo (cache) makes each subproblem cost once — the entire reason DP exists.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Climb the Tape",
+            "kind": "tutorial",
+            "problem": "Climbing Stairs (LC 70): watch a bottom-up solution fill a tape of crates left to right, each crate dp[i] = dp[i-1] + dp[i-2], with two robots reading the two crates just behind them.",
+            "teaches": "Writing a recurrence and filling a 1-D DP table bottom-up (tabulation), reading only from already-solved smaller crates instead of recursing.",
+            "difficulty": 1
+          },
+          {
+            "order": 3,
+            "name": "Cheapest Steps",
+            "kind": "tutorial",
+            "problem": "Min Cost Climbing Stairs (LC 746): watch the tape fill where each crate takes the cheaper of its two predecessors plus that step's cost, dp[i] = cost[i] + min(dp[i-1], dp[i-2]).",
+            "teaches": "A DP transition that chooses the best (min) among options and accumulates a cost — DP as picking the best predecessor, not just summing neighbors.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "Rob the Street",
+            "kind": "guided",
+            "problem": "House Robber (LC 198): the tape and robots are wired up except one crate's formula is blank — fill the transition dp[i] = max(dp[i-1], nums[i] + dp[i-2]) so the robber takes the best of skip-this-house versus rob-this-house-plus-two-back.",
+            "teaches": "The take-or-skip decision: each cell is a max over 'use this element' vs 'don't', with the no-adjacent constraint encoded by reaching back to i-2.",
+            "difficulty": 2
+          },
+          {
+            "order": 5,
+            "name": "The Ring of Houses",
+            "kind": "guided",
+            "problem": "House Robber II (LC 213): houses sit on a circle so the first and last are now adjacent; fill the wiring that runs your House-Robber solver twice — once on houses[0..n-2], once on houses[1..n-1] — and returns the max of the two.",
+            "teaches": "Reducing a new constraint (a circular street) to a problem you already solved by splitting it into two linear subproblems.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "Break the Word",
+            "kind": "open",
+            "problem": "Word Break (LC 139): write it cold. Over a tape indexed by string position, dp[i] is reachable if some earlier reachable crate j has s[j:i] in the word set; return dp[len(s)].",
+            "teaches": "Boolean reachability DP over a string, using an inner scan back to earlier crates plus O(1) hash-set membership for the dictionary lookup.",
+            "difficulty": 3
+          },
+          {
+            "order": 7,
+            "name": "Make the Change",
+            "kind": "open",
+            "problem": "Coin Change (LC 322): write it cold. Build a tape indexed by AMOUNT rather than by position; dp[a] = min over coins c of dp[a-c] + 1, holding unreachable amounts at an infinity sentinel and returning dp[amount] or -1.",
+            "teaches": "DP over a value/amount axis with unbounded reuse of choices, minimizing a count, and using an infinity sentinel to mark impossible cells.",
+            "difficulty": 4
+          },
+          {
+            "order": 8,
+            "name": "Decode Under Pressure",
+            "kind": "optimize",
+            "problem": "Decode Ways (LC 91): you're handed a correct but exponential recursion that branches on take-one-digit versus take-two-digits and browns out on a long digit string; add a memo (or convert to an O(n) tape) to clear the power meter — while handling '0', valid '10'/'20', and invalid '30'.",
+            "teaches": "Recognizing overlapping subproblems in a fresh problem and applying the memo mechanism yourself to collapse exponential recursion to O(n) — the primer's lesson, now self-driven, with careful transition edge cases.",
+            "difficulty": 4
+          },
+          {
+            "order": 9,
+            "name": "The Longest Climb",
+            "kind": "open",
+            "problem": "Longest Increasing Subsequence (LC 300): write the O(n^2) DP cold — dp[i] = 1 + max(dp[j] for all j<i with nums[j] < nums[i]), and the answer is max(dp).",
+            "teaches": "Subsequence DP where each crate depends on ALL earlier crates (not just fixed neighbors), scanning back to extend the best compatible increasing run.",
+            "difficulty": 4
+          },
+          {
+            "order": 10,
+            "name": "Patience Under Brown-Out",
+            "kind": "boss",
+            "problem": "Longest Increasing Subsequence, O(n log n) (LC 300): the O(n^2) inner scan browns out on a huge array; maintain a 'tails' tape and, for each number, BINARY-SEARCH the first tail >= it and overwrite it (patience sorting), hitting O(n log n) to beat the tighter power meter.",
+            "teaches": "Fusing DP thinking with binary search: replace the O(n) inner scan with a binary-searched tails array to solve the same problem from the open level, now optimally.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "intervals",
+        "title": "Intervals: Sort, Sweep, and the Frontier",
+        "act": "III - Search & Optimize",
+        "oneLineGoal": "Kill the O(n^2) \"compare every pair\" instinct: sort intervals by a boundary, then sweep once to detect overlaps, merge bars, and count rooms.",
+        "prereqChapters": [
+          "foundations",
+          "arrays-hashing",
+          "greedy",
+          "heaps"
+        ],
+        "mechanismInOneSentence": "Sort intervals by one boundary, then sweep left-to-right exactly once, deciding every overlap and merge by comparing the current interval's edge to a running frontier (the furthest end seen so far).",
+        "bossCombinesWith": "heaps",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Overlap Lamp",
+            "kind": "primer",
+            "problem": "Sandbox: two draggable interval bars sharing one number line. Drag their endpoints through presets (disjoint, touching at an endpoint, partial overlap, one nested inside the other); an 'overlap lamp' lights and highlights the shared region whenever they intersect. No code, no fail.",
+            "teaches": "An interval is a [start, end] bar on a timeline; two bars overlap exactly when a.start <= b.end AND b.start <= a.end; the tricky endpoint-touch case ([1,2] vs [2,3]) and why < vs <= is the whole decision.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Sort, Then Sweep",
+            "kind": "tutorial",
+            "problem": "Meeting Rooms I — given meeting [start, end] intervals, return True if one person can attend them all (no two overlap). Watch the tracer: crates reorder as it sorts by start, then a robot sweeps left-to-right comparing each start against the previous meeting's end; the first collision flips the lamp to False.",
+            "teaches": "Sorting by start collapses 'compare everyone to everyone' (O(n^2)) into a single O(n log n) sweep; once sorted, an overlap can only happen with the immediately previous interval, so you only ever compare curr.start to prev.end.",
+            "difficulty": 2
+          },
+          {
+            "order": 3,
+            "name": "Does It Fit?",
+            "kind": "guided",
+            "problem": "Meeting Rooms I again, with the overlap test blanked out. Fill the single line inside the loop: the condition on intervals[i][0] and intervals[i-1][1] that returns False when two sorted meetings collide.",
+            "teaches": "Writing the overlap comparison against the running previous end; choosing < vs <= so that back-to-back meetings ([1,2],[2,3]) are allowed while genuine overlaps are caught.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "The Frontier Robot",
+            "kind": "tutorial",
+            "problem": "Merge Intervals — merge all overlapping intervals into the fewest bars. Watch: after sorting by start, a 'current merged bar' grows rightward; when the next bar overlaps, the frontier end becomes max(frontier end, next end); when a gap appears, the finished bar is emitted to the output tape and a fresh one begins.",
+            "teaches": "Carrying a running merged interval (the frontier) instead of comparing pairs; extend-with-max on the end (a later bar can be shorter, so you MUST take max, not just overwrite); emit-on-gap to close out a merged run.",
+            "difficulty": 3
+          },
+          {
+            "order": 5,
+            "name": "Collapse the Bars",
+            "kind": "open",
+            "problem": "Merge Intervals — write it cold: sort by start, keep a result list, and for each interval either extend the last result bar (when it overlaps) or append a new one. Return the merged list.",
+            "teaches": "Owning the full sort + sweep + merge loop end to end; the append-vs-extend branch; using result[-1] as the live frontier so you never need a separate tracking variable.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "Slot It In",
+            "kind": "open",
+            "problem": "Insert Interval — given an already sorted, non-overlapping list plus one newInterval, return the list with newInterval inserted and merged. Write it as three passes: copy every interval that ends before newInterval starts, absorb every interval that overlaps newInterval (widening it), then copy the rest.",
+            "teaches": "Exploiting input that is ALREADY sorted so no sort is needed (O(n), not O(n log n)); the three-region sweep (strictly-left / overlapping / strictly-right); merging a single moving bar by taking min of starts and max of ends.",
+            "difficulty": 4
+          },
+          {
+            "order": 7,
+            "name": "Fewest to Cut",
+            "kind": "optimize",
+            "problem": "Non-overlapping Intervals — return the minimum number of intervals to remove so the rest don't overlap. A sort-by-start, keep-the-newest attempt browns out on adversarial inputs; hit the target by sorting on END and greedily keeping the interval that finishes earliest, dropping any whose start lands before that finish.",
+            "teaches": "Greedy interval scheduling: sort by END (not start) so the earliest-finishing bar leaves the most room for later ones; each kept interval's end becomes the new frontier; a drop = a removal. Cements the judgment call of when to sort by start vs by end (builds on the Greedy chapter).",
+            "difficulty": 4
+          },
+          {
+            "order": 8,
+            "name": "How Many Rooms?",
+            "kind": "boss",
+            "problem": "Meeting Rooms II — return the minimum number of rooms so no two meetings share one. Sort by start, sweep the meetings, and keep a min-heap of the end times of meetings still in progress: before each new meeting, pop every room whose end <= this start (freed up), then push this meeting's end; the peak heap size is the answer.",
+            "teaches": "Fusing the interval sweep with a heap: the min-heap holds the frontier of all currently-open meetings, and its smallest end is the soonest a room frees; peak heap size = max concurrent overlaps = rooms needed. Combines the Intervals sweep with the Heaps pattern.",
+            "difficulty": 5
+          }
+        ]
+      },
+      {
+        "chapterKey": "greedy",
+        "title": "Greedy: Commit and Never Look Back",
+        "act": "III - Search & Optimize",
+        "oneLineGoal": "Recognize when a single forward sweep that commits to the locally best move — and never backtracks — beats searching every option.",
+        "prereqChapters": [
+          "foundations",
+          "arrays-hashing",
+          "heaps"
+        ],
+        "mechanismInOneSentence": "At each step commit to the choice that looks best right now and never undo it, carrying one running \"best\"/\"frontier\" register through a single forward pass, trusting that locally optimal moves compound into the global optimum.",
+        "bossCombinesWith": "heaps",
+        "levels": [
+          {
+            "order": 1,
+            "name": "The Committed Robot",
+            "kind": "primer",
+            "problem": "Poke-and-watch (no fail): a hauler robot walks a tape of crates holding mixed +/- values, carrying a 'haul' battery. At each crate you poke to watch it make one choice — extend the current haul (add this crate) or dump it and restart from here — while a separate 'best haul ever' ledger quietly records the maximum. Watch the running total get dumped the instant carrying it would hurt. This is Maximum Subarray seen from zero, with no code to write.",
+            "teaches": "The greedy contract itself: one forward pass, an irreversible local choice at each crate, and a single running-best register — you never walk backward or reconsider a crate.",
+            "difficulty": 1
+          },
+          {
+            "order": 2,
+            "name": "Best Haul on the Tape",
+            "kind": "tutorial",
+            "problem": "Maximum Subarray (NeetCode). Watch the tracer run Kadane's algorithm on the crate tape: cur = max(x, cur + x); best = max(best, cur). Use the scrubber to see cur reset to the current crate's value the moment carrying the old prefix sum would drag it down.",
+            "teaches": "Kadane's greedy rule — drop the running sum the instant it goes negative, since a negative prefix can only shrink any future haul; keep the global best in a separate register.",
+            "difficulty": 2
+          },
+          {
+            "order": 3,
+            "name": "The Reach Frontier",
+            "kind": "guided",
+            "problem": "Jump Game (NeetCode). A robot must decide if it can reach the last crate, where each crate's number is its maximum jump length. Fill the one missing line that extends the reachable frontier: reach = max(reach, i + nums[i]); the surrounding code already bails if index i ever passes reach.",
+            "teaches": "Feasibility greedy — keep only the single farthest index you can reach; as long as the current index sits inside reach, the frontier can always be pushed further, so no branching search is needed.",
+            "difficulty": 2
+          },
+          {
+            "order": 4,
+            "name": "Trim the Overshoot",
+            "kind": "guided",
+            "problem": "Merge Triplets to Form Target Triplet (NeetCode). Fill the guard line that discards any triplet exceeding the target in any position — if a <= t[0] and b <= t[1] and c <= t[2] — so that only harmless triplets get OR-max'd position-by-position into the target.",
+            "teaches": "A second greedy flavor, filter-then-accumulate: throw away every candidate that could never help (it overshoots somewhere), then safely combine what remains without any backtracking.",
+            "difficulty": 3
+          },
+          {
+            "order": 5,
+            "name": "Clean Cuts",
+            "kind": "open",
+            "problem": "Partition Labels (NeetCode). Write it cold: precompute each character's last index into a hash map, then sweep the string expanding the current segment's end via end = max(end, last[c]); cut a partition the moment the index reaches that end, then start the next segment fresh.",
+            "teaches": "Greedy boundary-growing — grow a window only as far as the farthest obligation inside it forces you to, then commit the cut and never merge backward; the last-occurrence map turns a search into one sweep.",
+            "difficulty": 3
+          },
+          {
+            "order": 6,
+            "name": "Fewest Leaps",
+            "kind": "open",
+            "problem": "Jump Game II (NeetCode). Write the minimum-jumps solver cold: track the end of the current jump's range and the farthest index reachable within it; when the index hits the range end, spend one jump and push the range out to farthest. Return the jump count.",
+            "teaches": "Optimization greedy as level-by-level (BFS-by-range) expansion — you never choose which crate to land on; you only count a jump when the current reach is exhausted, always extending to the best frontier seen so far.",
+            "difficulty": 4
+          },
+          {
+            "order": 7,
+            "name": "One Loop, No Retries",
+            "kind": "optimize",
+            "problem": "Gas Station (NeetCode). The obvious 'try starting at every station' is O(n^2) and browns out the power meter on large tapes. Hit the O(n) target: if total gas >= total cost a solution exists, and the answer is the station right after wherever the running tank last dipped below zero.",
+            "teaches": "Collapsing an O(n^2) search into one greedy pass — any prefix whose tank goes negative can never be a valid start, so reset the candidate start there instead of re-scanning, justified by a single global feasibility check.",
+            "difficulty": 4
+          },
+          {
+            "order": 8,
+            "name": "Deal the Straights",
+            "kind": "boss",
+            "problem": "Hand of Straights (NeetCode). Count every card into a hash map, then repeatedly pull the smallest available value off a min-heap and greedily build a run of groupSize consecutive cards, decrementing counts as you go; fail if any needed consecutive card is missing or its supply runs out. Fuses greedy commitment with a heap-driven 'always take the minimum' substrate feeding a Counter of supply.",
+            "teaches": "Boss fusion of greedy + heaps — the smallest remaining card is forced to start a group, so a min-heap keeps handing you the one correct irreversible move while a Counter tracks remaining supply; combine the running-frontier discipline from earlier levels with a priority-queue as the decision engine.",
+            "difficulty": 5
+          }
+        ]
+      }
+    ],
+    "curriculum": "# DEREF Master Curriculum\n\n## 0. Verification first (what I changed)\n\nI ran a topological sort over the `prereqChapters` edges. **One violation:** `tries` is tagged Act II but lists `backtracking` as a prereq, and its boss (Word Search II) *is* trie + grid-backtracking. Backtracking is Act III. So as delivered, a learner reaches Tries before the chapter it fuses with — a forward dependency.\n\n**Fix:** move `tries` into Act III, placed after `backtracking` (and after `graphs`, so grid-DFS is fresh for Word Search II). No other cross-act violations exist. After this move the DAG is acyclic and every chapter — and every `bossCombinesWith` target — resolves to an *earlier* chapter. Verified below.\n\n---\n\n## 1. Full ordering: ACT -> CHAPTER -> LEVEL\n\n### ACT 0 — FOUNDATIONS *(designed separately; referenced as prereq only)*\nArray = tape of numbered crates; indices; pointer-robots; Big-O intuition via the op/brown-out meters; comparison **sorting**; **hashing-intro** primers. Every Act I chapter treats this as satisfied. This act must ship first (the whole engine substrate lives here).\n\n### ACT I — LINEAR\nOrder chosen so each chapter's prereqs precede it: `arrays-hashing → two-pointers → sliding-window → stack → binary-search`. (Sliding-window/stack/binary-search all only need `{arrays-hashing, two-pointers}`, so their relative order is pedagogical, not forced.)\n\n**Chapter 1 — Arrays & Hashing: The Mailbox Wall** *(prereq: Foundations · boss fuses Foundations-sorting)*\n- L1 The Mailbox Wall — primer — d1\n- L2 Contains Duplicate — tutorial — d1\n- L3 Valid Anagram — guided — d2\n- L4 Two Sum — guided — d2\n- L5 Two Sum, No Scaffold — open — d2\n- L6 Group Anagrams — open — d3\n- L7 Encode and Decode Strings — open — d3\n- L8 Valid Sudoku — open — d4\n- L9 Product of Array Except Self — optimize — d4\n- L10 Top K Frequent Elements — optimize — d4\n- L11 Longest Consecutive Sequence — boss — d5\n\n**Chapter 2 — Two Pointers: The Rendezvous** *(prereq: arrays-hashing · boss fuses Foundations-sorting)*\n- L1 The Mirror Walk — primer — d1\n- L2 The Rendezvous (Two Sum II, LC167) — tutorial — d2\n- L3 Which Way to Step? — guided — d2\n- L4 Palindrome Checkpoint (LC125) — open — d3\n- L5 Rendezvous, From Memory — open — d3\n- L6 Widest Cistern (Container With Most Water, LC11) — optimize — d4\n- L7 After the Storm (Trapping Rain Water, LC42) — optimize — d5\n- L8 The Zero Sum (3Sum, LC15) — boss — d5\n\n**Chapter 3 — Sliding Window: The Moving Frame** *(prereq: arrays-hashing, two-pointers · boss fuses arrays-hashing)*\n- L1 The Window Frame (Max Sum Subarray size K) — primer — d1\n- L2 Buy Low, Sell Right (Best Time to Buy/Sell Stock) — tutorial — d2\n- L3 No Repeats Allowed (Longest Substring w/o Repeating) — guided — d2\n- L4 Paint the Longest Streak (Longest Repeating Char Replacement) — open — d3\n- L5 Two Baskets (Fruit Into Baskets / at-most-K-distinct) — open — d3\n- L6 The Rolling Match (Permutation in String) — optimize — d4\n- L7 Smallest Cover (Minimum Window Substring) — boss — d5\n\n**Chapter 4 — The Stack: Spring-Loaded Piles & Monotonic Walls** *(prereq: arrays-hashing, two-pointers · boss fuses two-pointers)*\n- L1 The Spring Platform — primer — d1\n- L2 Balanced Brackets (Valid Parentheses) — tutorial — d1\n- L3 Close the Brackets — guided — d2\n- L4 The Twin Platform (Min Stack) — guided — d2\n- L5 The Postfix Calculator (Eval RPN) — open — d3\n- L6 The Monotonic Wall — **primer (mid-chapter reset)** — d2\n- L7 How Many Days Until Warmer? (Daily Temperatures) — tutorial — d3\n- L8 Resolve the Wait — guided — d3\n- L9 Next Greater, Cold — open — d4\n- L10 Beat the Brown-Out: Car Fleet — optimize — d4\n- L11 The Skyline Vault (Largest Rectangle in Histogram) — boss — d5\n\n**Chapter 5 — Binary Search: Halving the Search Space** *(prereq: arrays-hashing, two-pointers · boss fuses two-pointers)*\n- L1 The Crate Hunt — primer — d1\n- L2 Search, On Rails (LC704) — tutorial — d1\n- L3 Mind the Boundary — guided — d2\n- L4 Cold Search — open — d2\n- L5 Flatten the Grid (Search a 2D Matrix, LC74) — guided — d3\n- L6 The Last One Before (Time-Based KV Store, LC981) — guided — d3\n- L7 Where the Tape Snapped (Find Min in Rotated, LC153) — tutorial — d3\n- L8 Search the Broken Ring (Search in Rotated, LC33) — open — d4\n- L9 Beat the Clock, Koko (LC875) — optimize — d4\n- L10 Median of Two Tapes (LC4) — boss — d5\n\n### ACT II — LINKED & RECURSIVE\nOrder: `linked-list → recursion → trees → heaps`. (Tries moved out to Act III.)\n\n**Chapter 6 — Linked Lists: The Cable Yard** *(prereq: two-pointers, arrays-hashing · boss fuses arrays-hashing)*\n- L1 The Cable Yard — primer — d1\n- L2 Walk the Line — tutorial — d1\n- L3 Flip It — Watch the Dance (Reverse List) — tutorial — d2\n- L4 Flip It — Plug the Gap — guided — d2\n- L5 Flip It — Solo — open — d3\n- L6 The Zipper (Merge Two Sorted Lists) — guided — d3\n- L7 Carry the One (Add Two Numbers) — open — d3\n- L8 Tortoise & Hare (Linked List Cycle) — guided — d3\n- L9 Cut the Nth-from-Last — open — d4\n- L10 Fold the List (Reorder List) — open — d4\n- L11 The K-Way Weld (Merge K Sorted Lists) — optimize — d4\n- L12 BOSS: The Cache Vault (LRU Cache) — boss — d5\n\n**Chapter 7 — Recursion & the Call Stack** *(prereq: stack, linked-list, two-pointers · boss fuses two-pointers)*\n- L1 The Tower of Frames (factorial) — primer — d1\n- L2 Down, Then Back Up (sum_to) — tutorial — d2\n- L3 The Branching Stack (naive fib) — tutorial — d2\n- L4 Mind the Base Case (reverse a string) — guided — d2\n- L5 Recurse Down the Chain (recursive list length) — guided — d3\n- L6 Merge Two Chains (recursive Merge Two Lists) — open — d3\n- L7 Reverse the Chain, Bottom-Up — open — d4\n- L8 Halve and Conquer (Pow(x,n)) — open — d4\n- L9 Cache the Tree (memoized fib) — optimize — d4\n- L10 Merge Sort: Split, Solve, Merge — boss — d5\n\n**Chapter 8 — Trees & BSTs: The Recursive Grove** *(prereq: recursion, linked-list · boss fuses arrays-hashing)*\n- L1 The Grove — primer — d1\n- L2 Deep Dive (Max Depth, LC104) — tutorial — d1\n- L3 Mirror, Mirror (Invert Tree, LC226) — guided — d2\n- L4 Spot the Difference (Same Tree, LC100) — guided — d2\n- L5 Grove Within a Grove (Subtree of Another Tree, LC572) — open — d3\n- L6 The Long Way Round (Diameter, LC543) — open — d3\n- L7 Tipping Point (Balanced Tree, LC110) — open — d3\n- L8 The Loading Dock (Level Order / BFS, LC102) — **tutorial (new-tool reset)** — d2\n- L9 The View From the Right (Right Side View, LC199) — open — d3\n- L10 Kings of the Hill (Count Good Nodes, LC1448) — open — d3\n- L11 Fork in the Road (LCA of BST, LC235) — guided — d3\n- L12 Border Patrol (Validate BST, LC98) — open — d4\n- L13 Just Enough (Kth Smallest in BST, LC230) — optimize — d4\n- L14 Rebuild the Grove (Construct from Pre+Inorder, LC105) — boss — d5\n\n**Chapter 9 — Heaps & Priority Queues: The Loosely-Sorted Pile** *(prereq: arrays-hashing, trees · boss fuses arrays-hashing)*\n- L1 THE BUBBLE PIT — primer — d1\n- L2 STONE SMASHER (Last Stone Weight) — tutorial — d2\n- L3 THE HIGH-WATER MARK (Kth Largest in a Stream) — guided — d2\n- L4 TOP OF THE PILE (Kth Largest in an Array) — open — d3\n- L5 NEAREST BEACONS (K Closest Points) — open — d3\n- L6 THE COOLDOWN YARD (Task Scheduler) — open — d4\n- L7 THE MEDIAN GATE (Find Median from Data Stream) — optimize — d5\n- L8 THE FEED FORGE (Design Twitter) — boss — d5\n\n### ACT III — SEARCH & OPTIMIZE\nOrder: `backtracking → graphs → tries → greedy → intervals → dynamic-programming`.\nForced edges: tries-after-backtracking; intervals-after-greedy. DP has no Act-III prereq and lands last as the whole-game capstone.\n\n**Chapter 10 — Backtracking: Choose, Explore, Un-choose** *(prereq: recursion, trees, arrays-hashing · boss fuses arrays-hashing)*\n- L1 Choose, Explore, Un-choose — primer — d1\n- L2 Subsets, on Autopilot (LC78) — tutorial — d1\n- L3 The Missing Undo — guided — d2\n- L4 Dialing by Branches (Letter Combinations, LC17) — guided — d2\n- L5 Order Matters Now (Permutations, LC46) — guided — d3\n- L6 Hitting a Target (Combination Sum, LC39) — open — d3\n- L7 Killing the Duplicates (Combination Sum II, LC40) — guided — d3\n- L8 Cutting a String (Palindrome Partitioning, LC131) — open — d4\n- L9 Prune or Brown Out (Combination Sum, pruned) — optimize — d4\n- L10 Search the Grid (Word Search, LC79) — open — d4\n- L11 N-Queens (LC51) — boss — d5\n\n**Chapter 11 — Graphs, BFS & DFS: Floods, Dives, Frontiers** *(prereq: arrays-hashing, recursion, trees, stack · boss fuses arrays-hashing)*\n- L1 Signal in the Network — primer — d1\n- L2 Two Robots, One Grid (Number of Islands, watch) — tutorial — d1\n- L3 Sink the Island — guided — d2\n- L4 How Big Is It? (Max Area of Island) — open — d3\n- L5 Trapped in the Middle (Surrounded Regions) — open — d3\n- L6 Two Oceans (Pacific Atlantic) — open — d4\n- L7 Wire the Stations (Connected Components) — guided — d3\n- L8 Copy the Whole Network (Clone Graph) — open — d4\n- L9 The Ripple Is the Distance (Rotting Oranges, watch) — **tutorial (new-mechanic reset)** — d2\n- L10 Rot Spreads Fastest by Wave (Rotting Oranges) — open — d4\n- L11 Fill Every Room (Walls and Gates) — optimize — d4\n- L12 Can You Finish? (Course Schedule) — open — d4\n- L13 Order of Operations (Course Schedule II) — optimize — d5\n- L14 The Ladder (Word Ladder) — boss — d5\n\n**Chapter 12 — Tries: The Letter Warehouse** *(prereq: arrays-hashing, trees, recursion, **backtracking** · boss fuses backtracking)* — **moved here from Act II**\n- L1 The Letter Warehouse (LC208) — primer — d1\n- L2 Insert, Watched — tutorial — d2\n- L3 Search vs. startsWith — guided — d2\n- L4 Build the Warehouse Cold — open — d3\n- L5 Prefix Query Storm — optimize — d3\n- L6 The Wildcard Split (LC211, watch) — tutorial — d4\n- L7 Add & Search Words (LC211) — open — d4\n- L8 BOSS: Word Search II (LC212) — boss — d5\n\n**Chapter 13 — Greedy: Commit and Never Look Back** *(prereq: arrays-hashing, heaps · boss fuses heaps)*\n- L1 The Committed Robot (Max Subarray, poke) — primer — d1\n- L2 Best Haul on the Tape (Kadane) — tutorial — d2\n- L3 The Reach Frontier (Jump Game) — guided — d2\n- L4 Trim the Overshoot (Merge Triplets) — guided — d3\n- L5 Clean Cuts (Partition Labels) — open — d3\n- L6 Fewest Leaps (Jump Game II) — open — d4\n- L7 One Loop, No Retries (Gas Station) — optimize — d4\n- L8 Deal the Straights (Hand of Straights) — boss — d5\n\n**Chapter 14 — Intervals: Sort, Sweep, and the Frontier** *(prereq: arrays-hashing, **greedy**, heaps · boss fuses heaps)*\n- L1 The Overlap Lamp — primer — d1\n- L2 Sort, Then Sweep (Meeting Rooms I) — tutorial — d2\n- L3 Does It Fit? — guided — d2\n- L4 The Frontier Robot (Merge Intervals, watch) — tutorial — d3\n- L5 Collapse the Bars (Merge Intervals) — open — d3\n- L6 Slot It In (Insert Interval) — open — d4\n- L7 Fewest to Cut (Non-overlapping Intervals) — optimize — d4\n- L8 How Many Rooms? (Meeting Rooms II) — boss — d5\n\n**Chapter 15 — Dynamic Programming: The Memo Tape** *(prereq: recursion, arrays-hashing, **binary-search** · boss fuses binary-search)* — **whole-game finale**\n- L1 The Recompute Trap (naive Fibonacci) — primer — d1\n- L2 Climb the Tape (Climbing Stairs, LC70) — tutorial — d1\n- L3 Cheapest Steps (Min Cost Climbing Stairs, LC746) — tutorial — d2\n- L4 Rob the Street (House Robber, LC198) — guided — d2\n- L5 The Ring of Houses (House Robber II, LC213) — guided — d3\n- L6 Break the Word (Word Break, LC139) — open — d3\n- L7 Make the Change (Coin Change, LC322) — open — d4\n- L8 Decode Under Pressure (Decode Ways, LC91) — optimize — d4\n- L9 The Longest Climb (LIS O(n²), LC300) — open — d4\n- L10 Patience Under Brown-Out (LIS O(n log n)) — boss — d5\n\n**Acyclicity check (final linear order):**\n`arrays-hashing(1) · two-pointers(2) · sliding-window(3) · stack(4) · binary-search(5) · linked-list(6) · recursion(7) · trees(8) · heaps(9) · backtracking(10) · graphs(11) · tries(12) · greedy(13) · intervals(14) · dynamic-programming(15)`.\nEvery `prereqChapters` entry and every `bossCombinesWith` target has a strictly lower index than the chapter that names it. No cycles. No chapter depends on a later one.\n\n---\n\n## 2. Cross-chapter difficulty curve\n\n**Shape: a rising sawtooth, not a straight line.** Every chapter opens with a difficulty-1 (occasionally d2) *no-fail poke-and-watch primer* that rebuilds its mechanism from zero, then ramps 1→5 to a boss. So the *mechanical* floor resets to zero at each chapter boundary while the *conceptual* ceiling climbs. This reset is the single most important anti-cliff device in the design — an \"advanced\" chapter never demands you be advanced to *enter* it. This holds for all 15 chapters (verified: every `order:1` level is a primer at d1, plus deliberate mid-chapter primer/tutorial resets at Stack L6, Trees L8, Graphs L9).\n\n**Within-chapter ramps are all monotone or dip-then-rise (dips are intentional).** No chapter jumps more than +1 difficulty between consecutive levels except across a deliberate new-mechanic reset (Stack's monotonic-wall primer, Trees' BFS tutorial, Graphs' Rotting-Oranges tutorial), which *lower* difficulty to introduce a fresh tool — the correct direction.\n\n**The conceptual ceiling is raised gradually by pre-planted bridges, not by the primers.** The design already threads each hard idea one chapter early so its \"home\" chapter is a re-grounding, not a first contact:\n- **Memoization** is introduced in Recursion L9 (Cache the Tree) and is the entire premise of DP L1 — DP does not spring memoization on a beginner.\n- **Two-pointer merge** appears in Recursion L10 (Merge Sort) and is reused by Binary Search L10 and DP thinking.\n- **Grid DFS + un-mark** is taught in Backtracking L10 (Word Search) before Tries' Word Search II boss.\n- **BFS/queue** is seeded in Trees L8 before it becomes the spine of Graphs.\n- **Sort-by-a-boundary greedy** is taught in Greedy before Intervals L7 explicitly leans on it.\n\nThis is what keeps the ceiling smooth. I want it preserved and made explicit in build tickets.\n\n**Genuine risk points and fixes:**\n\n1. **The recursion pivot (Act I → Recursion) is the steepest *conceptual* transition** — all of Act I is iterative loops; Recursion demands a new mental model. Mechanically it's soft (primer d1), and it's well-bridged (call-stack primer explicitly reuses the Stack substrate; Recursion L5 recurses over the linked list the learner just built). **Verdict: adequately bridged — do not add a level, but protect L1 (Tower of Frames) and L5 (Recurse Down the Chain) polish; they carry the transition.** Also keep Linked List immediately before Recursion (they're adjacent at #6→#7) so L6/L7 recursion problems reuse fresh material.\n\n2. **DP open levels are the highest cliff risk.** The ramp is generous through L5 (House Robber II, guided), then L6 Word Break is the first *open* DP whose recurrence isn't \"look one or two cells back\" — it needs an inner scan back over all earlier cells plus set membership. That's a real jump from the fixed-neighbor transitions before it. **Fix: insert a bridge level DP-L6a \"Word Break, Watched\" (tutorial) before the cold Word Break** — a watch-and-scrub run of the dp[i] reachability sweep so the inner-loop-over-earlier-cells shape is seen before it's written. Cheap, high payoff.\n\n3. **Graphs L11→L12: directed graphs + cycle detection is a new concept dropped straight into an *open* level.** Everything before L12 is undirected reachability; Course Schedule introduces edge direction, the 3-color on-path marker, and Kahn's indegree engine at once. **Fix: insert a bridge level Graphs-L11a \"Watch the Cycle\" (tutorial)** — a scrub-through of DFS 3-color marking on a tiny directed graph, showing a back-edge lighting red, before Course Schedule is written cold.\n\n4. **Legit hard d5 bosses (accept as-is):** Median of Two Sorted Arrays (Binary Search), Word Ladder / Course Schedule II (Graphs), LRU Cache (Linked List). These are supposed to be steep — they're bosses gated behind a full internal ramp and a fusion the learner has already rehearsed. No fix; just make sure the \"beat the brown-out\" target is the last gate, not correctness alone.\n\n5. **Graphs is the longest chapter (14, now 15 levels) with two d5 bosses.** Not a cliff — a pacing note. Consider surfacing it as two visible sub-arcs in the UI (Grid Flood-Fill L1–L11, Directed/Dependency L12–L14) so it doesn't read as a slog.\n\nNet: with the two inserted tutorials (DP Word Break, Graphs cycle), the curve has no jump larger than the intended per-chapter sawtooth reset.\n\n---\n\n## 3. Data model for the curriculum manifest\n\nA single `curriculum.json` the Flutter app reads at boot. Three nested record types. IDs are stable slugs; the app resolves prereqs and lock state client-side.\n\n**Field reference**\n\n`Act`\n- `id`: slug (`\"foundations\" | \"linear\" | \"linked-recursive\" | \"search-optimize\"`)\n- `order`: int (0-based; Foundations = 0)\n- `title`, `subtitle`\n- `chapters`: ordered array of chapterId\n\n`Chapter`\n- `id`: chapterKey slug (`\"two-pointers\"`)\n- `actId`, `order` (within act)\n- `title`, `oneLineGoal`, `mechanism` (the one-sentence mechanism)\n- `prereqChapters`: array of chapterId (the DAG edges; `[\"foundations\", ...]`)\n- `bossCombinesWith`: array of chapterId (may be empty)\n- `unlockRule`: enum — `\"allPrereqsCleared\"` (default) | `\"allPrereqsStarted\"` | `\"free\"`\n- `levelUnlockRule`: enum — `\"sequential\"` (default) | `\"free\"`\n- `levels`: ordered array of Level\n\n`Level`\n- `id`: `\"<chapterKey>.l<order>\"` (`\"two-pointers.l8\"`) — globally unique\n- `order`: int (within chapter)\n- `name`\n- `kind`: **enum** `\"primer\" | \"tutorial\" | \"guided\" | \"open\" | \"optimize\" | \"boss\"`\n- `difficulty`: int 1–5\n- `problem`: `{ source: \"leetcode\" | \"neetcode\" | \"classic\", ref: string|null, title: string }`\n- `teaches`: string\n- `engineLevelId`: string — the tracer/animation scene the app loads (`\"tp/two-sum-ii\"`); this is the contract between manifest and the Python-tracer engine bundle\n- `targetComplexity`: `{ time, space }` or `null`\n  - `null` on primer/tutorial (watch-only; no grader)\n  - present on guided/open; the grader's correctness gate must pass\n  - the *load-bearing* field on `optimize`/`boss`: the brown-out meter's op-budget is derived from `time`, and the space gauge from `space`. A solution that is correct but exceeds `time` browns out and does **not** clear the level.\n- `passRequires`: enum — `\"viewed\"` (primer/tutorial) | `\"correct\"` (guided/open) | `\"correct+withinBudget\"` (optimize/boss)\n\n**Lock / unlock rules (client-side derivation)**\n- An **Act** is unlocked when the previous act's chapters are all `cleared` (Foundations always unlocked).\n- A **Chapter** is unlocked when `unlockRule` is satisfied — default `\"allPrereqsCleared\"`: every chapterId in `prereqChapters` has `state == \"cleared\"` (its boss passed). Offer a settings toggle to relax to `\"allPrereqsStarted\"` for replay/practice.\n- A **Level** unlocks per `levelUnlockRule` — default `\"sequential\"`: level N unlocks when level N−1 reaches its `passRequires` state. The first level (always a primer) unlocks with the chapter.\n- A **Chapter** is `cleared` when its `boss` level reaches `\"correct+withinBudget\"`.\n\n**Example snippet — Two Pointers (abridged to primer / guided / boss)**\n\n```json\n{\n  \"acts\": [\n    {\n      \"id\": \"linear\",\n      \"order\": 1,\n      \"title\": \"Act I — Linear\",\n      \"subtitle\": \"Tapes, windows, piles, halving\",\n      \"chapters\": [\"arrays-hashing\", \"two-pointers\", \"sliding-window\", \"stack\", \"binary-search\"]\n    }\n  ],\n  \"chapters\": [\n    {\n      \"id\": \"two-pointers\",\n      \"actId\": \"linear\",\n      \"order\": 2,\n      \"title\": \"Two Pointers: The Rendezvous\",\n      \"oneLineGoal\": \"Collapse O(n^2) pair searches into one O(n), O(1)-space converging pass, and know when sortedness makes it legal.\",\n      \"mechanism\": \"On ordered data, two end-robots use one end-to-end comparison to discard a whole block of hopeless pairs, converging in one linear pass.\",\n      \"prereqChapters\": [\"foundations\", \"arrays-hashing\"],\n      \"bossCombinesWith\": [\"foundations\"],\n      \"unlockRule\": \"allPrereqsCleared\",\n      \"levelUnlockRule\": \"sequential\",\n      \"levels\": [\n        {\n          \"id\": \"two-pointers.l1\",\n          \"order\": 1,\n          \"name\": \"The Mirror Walk\",\n          \"kind\": \"primer\",\n          \"difficulty\": 1,\n          \"problem\": { \"source\": \"leetcode\", \"ref\": \"LC 125\", \"title\": \"Valid Palindrome (mechanic tour)\" },\n          \"teaches\": \"Converging pointers: L at left, R at right, the while L<R meeting invariant, one comparison per end-pair.\",\n          \"engineLevelId\": \"tp/mirror-walk\",\n          \"targetComplexity\": null,\n          \"passRequires\": \"viewed\"\n        },\n        {\n          \"id\": \"two-pointers.l3\",\n          \"order\": 3,\n          \"name\": \"Which Way to Step?\",\n          \"kind\": \"guided\",\n          \"difficulty\": 2,\n          \"problem\": { \"source\": \"leetcode\", \"ref\": \"LC 167\", \"title\": \"Two Sum II - Input Array Is Sorted\" },\n          \"teaches\": \"The monotonic decision rule choosing which pointer moves, and the proof-by-elimination behind it.\",\n          \"engineLevelId\": \"tp/two-sum-ii\",\n          \"targetComplexity\": { \"time\": \"O(n)\", \"space\": \"O(1)\" },\n          \"passRequires\": \"correct\"\n        },\n        {\n          \"id\": \"two-pointers.l8\",\n          \"order\": 8,\n          \"name\": \"The Zero Sum\",\n          \"kind\": \"boss\",\n          \"difficulty\": 5,\n          \"problem\": { \"source\": \"leetcode\", \"ref\": \"LC 15\", \"title\": \"3Sum\" },\n          \"teaches\": \"Sort to manufacture order, fix an anchor, run the Rendezvous inner walk, de-dup all three indices.\",\n          \"engineLevelId\": \"tp/3sum\",\n          \"targetComplexity\": { \"time\": \"O(n^2)\", \"space\": \"O(1)\" },\n          \"passRequires\": \"correct+withinBudget\"\n        }\n      ]\n    }\n  ]\n}\n```\n\nNote the two `targetComplexity` conventions in action: L1 (`null`, watch-only) vs L8 (`O(n^2)`/`O(1)`, where the boss's brown-out budget is derived from the time bound and space gauge from the space bound, so a correct-but-`O(n^2)`-space or `O(n^3)`-time answer fails).\n\n---\n\n## 4. Recommended build order\n\n**Given:** Foundations + Two Pointers ship. That means the engine already has the array-tape substrate, pointer-robots, op-meter, brown-out power meter, scrubber, and active-line code panel.\n\n**Dependency inversion to correct first:** Two Pointers is live but its stated prereq `arrays-hashing` is *not* built — the unlock graph is currently inconsistent (a learner reaches Two Pointers without the hash chapter it assumes). So the keystone and the literal next slice is Arrays & Hashing.\n\n**Prioritize the critical-path spine, interleave the cheap leaves.** The chain that unblocks the whole tree is `arrays-hashing → {stack, linked-list} → recursion → trees → everything`. Sliding-window and binary-search unblock almost nothing downstream (sliding-window unblocks zero chapters; binary-search only gates the DP boss), so they're cheap palate-cleanser wins, not blockers.\n\n**Milestone 1 — Arrays & Hashing (keystone).** Ships the reusable **hash \"mailbox-wall\" substrate** — needed by ~12 later chapters (freq maps, complement lookups, visited sets, adjacency, memo). Build this before anything else. Highest ROI in the whole plan.\n\n**Milestone 2 — Cheap Act I leaves (validate the meters, ship two full chapters).**\n- Binary Search — cheapest new engine: just `lo`/`hi`/`mid` markers on the existing tape. Good proving ground for the \"discard half\" viz and the infinite-loop brown-out (L3).\n- Sliding Window — existing tape + a small window-frame overlay + reuse the freq-map from Milestone 1. Great showcase for the op-meter (naive rescan vs slide).\n\n**Milestone 3 — Stack (unlocks the recursive act).** New **spring-platform** substrate + monotonic wall. Build now because the platform is reused as Recursion's call-stack tower and Graphs' DFS stack.\n\n**Milestone 4 — Linked List.** New **node/cable** substrate. Big-ish lift; gates Recursion and Trees.\n\n**Milestone 5 — Recursion (the pivot).** Reuses the Stack platform as the call-stack tower — minimal new substrate, maximal unlock (it gates Trees, Backtracking, Tries, Graphs, DP). Land the memoization level (L9) carefully; it's the seed of DP.\n\n**Milestone 6 — Trees, then Heaps.** New tree substrate unlocks Backtracking/Tries/Graphs; Heaps (array+pyramid) is self-contained after Trees.\n\n**Milestone 7 — Act III** in curriculum order: Backtracking → Graphs (largest single engine lift: network + grid + directed edges — budget accordingly, and land the inserted cycle-detection tutorial) → Tries → Greedy → Intervals → DP (land the inserted Word Break tutorial). DP last, as the finale.\n\n**The very next buildable slice (concrete, shippable end-to-end):**\nArrays & Hashing L1–L2–L4 on a new hash mailbox-wall substrate:\n- **L1 The Mailbox Wall** (primer, no grader — cheapest to build, proves the substrate renders and animates the \"slow walk vs teleport\" op-meter contrast),\n- **L2 Contains Duplicate** (tutorial — proves the seen-set one-pass animation + scrubber on the new substrate),\n- **L4 Two Sum** (guided fill-one-line — proves the grader + `targetComplexity` gate against `O(n)`/`O(n)` on hash content).\n\nThat slice ships the hash substrate plus the membership and complement mechanics, which immediately unblock Two Pointers' hash-twin comparison (already built), Sliding Window's freq maps, and every downstream hashmap fusion — the single highest-leverage increment available right now."
+  },
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Chapters"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Curriculum"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "chapter:arrays-hashing",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "a20fc903d3555794b",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783739957538,
+      "queuedAt": 1783739957519,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "arrays-hashing",
+      "promptPreview": "Design the DEREF chapter for the \"Arrays & Hashing\" family (act: I - Linear).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow solutions, a scrubber,…",
+      "lastProgressAt": 1783740182600,
+      "tokens": 24194,
+      "toolCalls": 2,
+      "durationMs": 225062,
+      "resultPreview": "{\"chapterKey\":\"arrays-hashing\",\"title\":\"Arrays & Hashing: The Mailbox Wall\",\"act\":\"I - Linear\",\"oneLineGoal\":\"Learn to trade a little memory for huge speed by remembering what you've seen in a hash set/map, turning O(n^2) tape-walks into single-pass O(n) lookups.\",\"prereqChapters\":[\"foundations\"],\"mechanismInOneSentence\":\"A hash map is a wall of instantly-addressable mailboxes: by remembering what…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "chapter:two-pointers",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "a25a6f29e626fd176",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783739957539,
+      "queuedAt": 1783739957519,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "two-pointers",
+      "promptPreview": "Design the DEREF chapter for the \"Two Pointers\" family (act: I - Linear). NOTE: The Rendezvous / Two Sum II already animates; build the chapter around it.\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with …",
+      "lastProgressAt": 1783740171863,
+      "tokens": 25142,
+      "toolCalls": 9,
+      "durationMs": 214323,
+      "resultPreview": "{\"chapterKey\":\"two-pointers\",\"title\":\"Two Pointers: The Rendezvous\",\"act\":\"I - Linear\",\"oneLineGoal\":\"Master the converging two-pointer walk on ordered data — collapse O(n^2) pair searches into a single O(n), O(1)-space pass, and know exactly when sortedness makes that legal.\",\"prereqChapters\":[\"foundations\",\"arrays-hashing\"],\"mechanismInOneSentence\":\"When a sequence is ordered, two pointer-robots…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "chapter:sliding-window",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "af252845f4b2ec6e4",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783739957540,
+      "queuedAt": 1783739957519,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "sliding-window",
+      "promptPreview": "Design the DEREF chapter for the \"Sliding Window\" family (act: I - Linear).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow solutions, a scrubber, a…",
+      "lastProgressAt": 1783740157129,
+      "tokens": 12956,
+      "toolCalls": 1,
+      "durationMs": 199589,
+      "resultPreview": "{\"chapterKey\":\"sliding-window\",\"title\":\"Sliding Window: The Moving Frame\",\"act\":\"I - Linear\",\"oneLineGoal\":\"Sweep a single-pass moving window over a linear structure — fixed-size or constraint-driven — to answer \\\"best / longest / smallest contiguous run\\\" questions in O(n).\",\"prereqChapters\":[\"foundations\",\"arrays-hashing\",\"two-pointers\"],\"mechanismInOneSentence\":\"Instead of re-scanning every sub…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "chapter:stack",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "a6c6a963a2dd84e03",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783739957540,
+      "queuedAt": 1783739957519,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "stack",
+      "promptPreview": "Design the DEREF chapter for the \"Stack\" family (act: I - Linear).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow solutions, a scrubber, and code w…",
+      "lastProgressAt": 1783740276221,
+      "tokens": 12953,
+      "toolCalls": 1,
+      "durationMs": 318681,
+      "resultPreview": "{\"chapterKey\":\"stack\",\"title\":\"The Stack: Spring-Loaded Piles & Monotonic Walls\",\"act\":\"I - Linear\",\"oneLineGoal\":\"Go from \\\"what is a stack?\\\" to wielding the monotonic stack that answers next-greater/smaller and largest-rectangle in a single O(n) pass.\",\"prereqChapters\":[\"foundations\",\"arrays-hashing\",\"two-pointers\"],\"mechanismInOneSentence\":\"A stack lets you touch only the top of a pile — push …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "chapter:binary-search",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "a01289ff95a2edb1a",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783739957540,
+      "queuedAt": 1783739957519,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "binary-search",
+      "promptPreview": "Design the DEREF chapter for the \"Binary Search\" family (act: I - Linear).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow solutions, a scrubber, an…",
+      "lastProgressAt": 1783740102942,
+      "tokens": 12953,
+      "toolCalls": 1,
+      "durationMs": 145402,
+      "resultPreview": "{\"chapterKey\":\"binary-search\",\"title\":\"Binary Search: Halving the Search Space\",\"act\":\"I - Linear\",\"oneLineGoal\":\"Find things in O(log n) by repeatedly throwing away the half of the space that cannot contain the answer.\",\"prereqChapters\":[\"foundations\",\"arrays-hashing\",\"two-pointers\"],\"mechanismInOneSentence\":\"Maintain a shrinking [lo, hi] window over a sorted (or otherwise monotonic) space and, a…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "chapter:linked-list",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "a11384dc189e8aad2",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783739957540,
+      "queuedAt": 1783739957519,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "linked-list",
+      "promptPreview": "Design the DEREF chapter for the \"Linked Lists\" family (act: II - Linked & Recursive).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow solutions, a …",
+      "lastProgressAt": 1783740254135,
+      "tokens": 31238,
+      "toolCalls": 3,
+      "durationMs": 296595,
+      "resultPreview": "{\"chapterKey\":\"linked-list\",\"title\":\"Linked Lists: The Cable Yard\",\"act\":\"II - Linked & Recursive\",\"oneLineGoal\":\"Master pointer rewiring on linked lists — traverse, reverse, dummy-head building, and fast/slow — from a first hop all the way to designing an O(1) LRU cache.\",\"prereqChapters\":[\"foundations\",\"two-pointers\",\"arrays-hashing\"],\"mechanismInOneSentence\":\"A linked list is a chain of crates …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 7,
+      "label": "chapter:recursion",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "ab9797de74b23eb75",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783740102946,
+      "queuedAt": 1783739957519,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "recursion",
+      "promptPreview": "Design the DEREF chapter for the \"Recursion & the Call Stack\" family (act: II - Linked & Recursive).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow…",
+      "lastProgressAt": 1783740333130,
+      "tokens": 28679,
+      "toolCalls": 3,
+      "durationMs": 230184,
+      "resultPreview": "{\"chapterKey\":\"recursion\",\"title\":\"Recursion & the Call Stack\",\"act\":\"II - Linked & Recursive\",\"oneLineGoal\":\"Read, write, and reason about recursive solutions by seeing the call stack as a physical tower of frames — base case, the recursive leap of faith, and return values unwinding back up.\",\"prereqChapters\":[\"foundations\",\"stack\",\"linked-list\",\"two-pointers\"],\"mechanismInOneSentence\":\"A functio…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 8,
+      "label": "chapter:trees",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "a8afc2421b7d90fa1",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783740157131,
+      "queuedAt": 1783739957520,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "trees",
+      "promptPreview": "Design the DEREF chapter for the \"Trees / BST\" family (act: II - Linked & Recursive).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow solutions, a s…",
+      "lastProgressAt": 1783740360457,
+      "tokens": 12964,
+      "toolCalls": 1,
+      "durationMs": 203326,
+      "resultPreview": "{\"chapterKey\":\"trees\",\"title\":\"Trees & BSTs — The Recursive Grove\",\"act\":\"II - Linked & Recursive\",\"oneLineGoal\":\"Solve any binary-tree problem with one recursive template (dive → combine → return, or pass constraints down), reach for a queue when you must sweep level by level, and exploit BST ordering to skip half the work.\",\"prereqChapters\":[\"foundations\",\"recursion\",\"linked-list\"],\"mechanismInO…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 9,
+      "label": "chapter:heaps",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "a48995ad49c0b84af",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783740171866,
+      "queuedAt": 1783739957520,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "heaps",
+      "promptPreview": "Design the DEREF chapter for the \"Heaps / Priority Queue\" family (act: II - Linked & Recursive).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow sol…",
+      "lastProgressAt": 1783740366091,
+      "tokens": 28029,
+      "toolCalls": 4,
+      "durationMs": 194224,
+      "resultPreview": "{\"chapterKey\":\"heaps\",\"title\":\"Heaps & Priority Queues: The Loosely-Sorted Pile\",\"act\":\"II - Linked & Recursive\",\"oneLineGoal\":\"Master the binary heap / priority queue so the extreme element is always instantly reachable, and use the size-k and two-heap tricks to solve top-k, streaming, and scheduling problems without ever fully sorting the data.\",\"prereqChapters\":[\"foundations\",\"arrays-hashing\",\"…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 10,
+      "label": "chapter:tries",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "a3a72110cfad59fe0",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783740182605,
+      "queuedAt": 1783739957520,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "tries",
+      "promptPreview": "Design the DEREF chapter for the \"Tries\" family (act: II - Linked & Recursive).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow solutions, a scrubbe…",
+      "lastProgressAt": 1783740407696,
+      "tokens": 28078,
+      "toolCalls": 4,
+      "durationMs": 225091,
+      "resultPreview": "{\"chapterKey\":\"tries\",\"title\":\"Tries — The Letter Warehouse\",\"act\":\"II - Linked & Recursive\",\"oneLineGoal\":\"Master the prefix tree: build it, walk it, wildcard-search it, and let it supercharge a grid search.\",\"prereqChapters\":[\"foundations\",\"arrays-hashing\",\"trees\",\"recursion\",\"backtracking\"],\"mechanismInOneSentence\":\"A trie stores a whole set of strings as one branching path of single-letter nod…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 11,
+      "label": "chapter:backtracking",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "ae68dd7040243884a",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783740254140,
+      "queuedAt": 1783739957520,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "backtracking",
+      "promptPreview": "Design the DEREF chapter for the \"Backtracking\" family (act: III - Search & Optimize).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow solutions, a …",
+      "lastProgressAt": 1783740610434,
+      "tokens": 28426,
+      "toolCalls": 3,
+      "durationMs": 356294,
+      "resultPreview": "{\"chapterKey\":\"backtracking\",\"title\":\"Backtracking: Choose, Explore, Un-choose\",\"act\":\"III - Search & Optimize\",\"oneLineGoal\":\"Turn any \\\"find all combinations / arrangements that satisfy a constraint\\\" problem into a choose-explore-unchoose search over a decision tree, then prune it so it runs fast.\",\"prereqChapters\":[\"foundations\",\"recursion\",\"trees\",\"arrays-hashing\"],\"mechanismInOneSentence\":\"E…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 12,
+      "label": "chapter:graphs",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "acd651035be26a7ba",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783740276223,
+      "queuedAt": 1783739957520,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "graphs",
+      "promptPreview": "Design the DEREF chapter for the \"Graphs (BFS / DFS)\" family (act: III - Search & Optimize).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow solutio…",
+      "lastProgressAt": 1783740548074,
+      "tokens": 12970,
+      "toolCalls": 1,
+      "durationMs": 271851,
+      "resultPreview": "{\"chapterKey\":\"graphs\",\"title\":\"Graphs — BFS & DFS: Floods, Dives, and Frontiers\",\"act\":\"III - Search & Optimize\",\"oneLineGoal\":\"Traverse graphs and grids with BFS and DFS to count and measure regions, find shortest paths, detect cycles, and order dependencies.\",\"prereqChapters\":[\"foundations\",\"arrays-hashing\",\"recursion\",\"trees\",\"stack\"],\"mechanismInOneSentence\":\"To explore a graph you visit a st…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 13,
+      "label": "chapter:dynamic-programming",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "a099a08a35ae18cdb",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783740333132,
+      "queuedAt": 1783739957520,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "dynamic-programming",
+      "promptPreview": "Design the DEREF chapter for the \"Dynamic Programming\" family (act: III - Search & Optimize).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow soluti…",
+      "lastProgressAt": 1783740520578,
+      "tokens": 12962,
+      "toolCalls": 1,
+      "durationMs": 187446,
+      "resultPreview": "{\"chapterKey\":\"dynamic-programming\",\"title\":\"Dynamic Programming — The Memo Tape\",\"act\":\"III - Search & Optimize\",\"oneLineGoal\":\"Turn slow, self-repeating recursion into fast table-filling by spotting overlapping subproblems and caching each subproblem's answer exactly once.\",\"prereqChapters\":[\"foundations\",\"recursion\",\"arrays-hashing\",\"binary-search\"],\"mechanismInOneSentence\":\"Many problems recom…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 14,
+      "label": "chapter:intervals",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "a8d9a4066b5df14e3",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783740360464,
+      "queuedAt": 1783739957520,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "intervals",
+      "promptPreview": "Design the DEREF chapter for the \"Intervals\" family (act: III - Search & Optimize).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow solutions, a scr…",
+      "lastProgressAt": 1783740510132,
+      "tokens": 12961,
+      "toolCalls": 1,
+      "durationMs": 149667,
+      "resultPreview": "{\"chapterKey\":\"intervals\",\"title\":\"Intervals: Sort, Sweep, and the Frontier\",\"act\":\"III - Search & Optimize\",\"oneLineGoal\":\"Kill the O(n^2) \\\"compare every pair\\\" instinct: sort intervals by a boundary, then sweep once to detect overlaps, merge bars, and count rooms.\",\"prereqChapters\":[\"foundations\",\"arrays-hashing\",\"greedy\",\"heaps\"],\"mechanismInOneSentence\":\"Sort intervals by one boundary, then s…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 15,
+      "label": "chapter:greedy",
+      "phaseIndex": 1,
+      "phaseTitle": "Chapters",
+      "agentId": "a3386e31592696825",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783740366092,
+      "queuedAt": 1783739957520,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "greedy",
+      "promptPreview": "Design the DEREF chapter for the \"Greedy\" family (act: III - Search & Optimize).\n\n\nPRODUCT: DEREF — a Zachtronics-style visual DSA learning game. Data structures are drawn as physical substrates (array = tape of numbered crates; pointers = robots). A Python tracer turns REAL user Python into replayable animation frames with an op/step meter, a brown-out power meter for too-slow solutions, a scrubb…",
+      "lastProgressAt": 1783740520031,
+      "tokens": 23096,
+      "toolCalls": 3,
+      "durationMs": 153938,
+      "resultPreview": "{\"chapterKey\":\"greedy\",\"title\":\"Greedy: Commit and Never Look Back\",\"act\":\"III - Search & Optimize\",\"oneLineGoal\":\"Recognize when a single forward sweep that commits to the locally best move — and never backtracks — beats searching every option.\",\"prereqChapters\":[\"foundations\",\"arrays-hashing\",\"heaps\"],\"mechanismInOneSentence\":\"At each step commit to the choice that looks best right now and never…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 16,
+      "label": "curriculum",
+      "phaseIndex": 2,
+      "phaseTitle": "Curriculum",
+      "agentId": "ac387bc589877e43c",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1783740610451,
+      "queuedAt": 1783740610447,
+      "attempt": 1,
+      "promptPreview": "You are the lead curriculum designer for DEREF. Assemble these per-chapter designs into ONE coherent basics->advanced curriculum.\n\nCHAPTERS (JSON):\n[{\"chapterKey\":\"arrays-hashing\",\"title\":\"Arrays & Hashing: The Mailbox Wall\",\"act\":\"I - Linear\",\"oneLineGoal\":\"Learn to trade a little memory for huge speed by remembering what you've seen in a hash set/map, turning O(n^2) tape-walks into single-pass O…",
+      "lastProgressAt": 1783740976612,
+      "tokens": 50239,
+      "toolCalls": 0,
+      "durationMs": 366160,
+      "resultPreview": "# DEREF Master Curriculum\n\n## 0. Verification first (what I changed)\n\nI ran a topological sort over the `prereqChapters` edges. **One violation:** `tries` is tagged Act II but lists `backtracking` as a prereq, and its boss (Word Search II) *is* trie + grid-backtracking. Backtracking is Act III. So as delivered, a learner reaches Tries before the chapter it fuses with — a forward dependency.\n\n**Fix…"
+    }
+  ],
+  "totalTokens": 357840,
+  "totalToolCalls": 38
+}

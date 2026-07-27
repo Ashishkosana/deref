@@ -1,0 +1,202 @@
+{
+  "id": "two-pointers/rendezvous",
+  "title": "THE RENDEZVOUS",
+  "pattern": "two_pointers",
+  "prompt": "Given a 1-indexed array of integers `nums` sorted ascending, return the 1-based indices (i, j) of the two numbers that add up to `target`, or None if there is no such pair.",
+  "targetClass": "O(n)",
+  "solution": "reference",
+  "input": {
+    "nums": [
+      2,
+      3,
+      5,
+      8,
+      11,
+      15,
+      19,
+      24
+    ],
+    "target": 17
+  },
+  "result": [
+    1,
+    6
+  ],
+  "verdict": {
+    "solved": true,
+    "correctnessPass": true,
+    "complexityPass": true,
+    "fittedClass": "O(n)",
+    "spaceHi": 0,
+    "curve": [
+      [
+        50,
+        296
+      ],
+      [
+        100,
+        596
+      ],
+      [
+        200,
+        1196
+      ],
+      [
+        400,
+        2396
+      ],
+      [
+        800,
+        4796
+      ]
+    ],
+    "messages": []
+  },
+  "source": "\ndef solve(nums, target):\n    L, R = 0, len(nums) - 1\n    while L < R:\n        s = nums[L] + nums[R]\n        if s == target:\n            return (L + 1, R + 1)\n        if s > target:\n            R -= 1\n        else:\n            L += 1\n    return None\n",
+  "frames": [
+    {
+      "tick": 0,
+      "line": 3,
+      "vars": {},
+      "space_hi": 0
+    },
+    {
+      "tick": 1,
+      "line": 4,
+      "vars": {
+        "L": 0,
+        "R": 7
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 2,
+      "line": 5,
+      "vars": {
+        "L": 0,
+        "R": 7
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 5,
+      "line": 6,
+      "vars": {
+        "L": 0,
+        "R": 7,
+        "s": 26
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 6,
+      "line": 8,
+      "vars": {
+        "L": 0,
+        "R": 7,
+        "s": 26
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 7,
+      "line": 9,
+      "vars": {
+        "L": 0,
+        "R": 7,
+        "s": 26
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 7,
+      "line": 4,
+      "vars": {
+        "L": 0,
+        "R": 6,
+        "s": 26
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 8,
+      "line": 5,
+      "vars": {
+        "L": 0,
+        "R": 6,
+        "s": 26
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 11,
+      "line": 6,
+      "vars": {
+        "L": 0,
+        "R": 6,
+        "s": 21
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 12,
+      "line": 8,
+      "vars": {
+        "L": 0,
+        "R": 6,
+        "s": 21
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 13,
+      "line": 9,
+      "vars": {
+        "L": 0,
+        "R": 6,
+        "s": 21
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 13,
+      "line": 4,
+      "vars": {
+        "L": 0,
+        "R": 5,
+        "s": 21
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 14,
+      "line": 5,
+      "vars": {
+        "L": 0,
+        "R": 5,
+        "s": 21
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 17,
+      "line": 6,
+      "vars": {
+        "L": 0,
+        "R": 5,
+        "s": 17
+      },
+      "space_hi": 0
+    },
+    {
+      "tick": 18,
+      "line": 7,
+      "vars": {
+        "L": 0,
+        "R": 5,
+        "s": 17
+      },
+      "space_hi": 0
+    }
+  ]
+}
